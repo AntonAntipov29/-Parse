@@ -21,6 +21,8 @@ namespace Конвертер_валют
 
 
             Console.WriteLine("Сумма в гривне = " + USD * dollar);
+            Console.WriteLine("Сумма в гривне = " + USD * dollarValue);
+            Console.WriteLine("Сумма в евро = " + USD * euroPerDollar);
             Console.ReadKey();
 
 
