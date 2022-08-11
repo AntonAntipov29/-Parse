@@ -19,6 +19,7 @@ namespace Конвертер_валют
 
 
             Console.WriteLine("Сумма в гривне = " + USD * dollar);
+            Console.ReadKey();
 
 
         }
