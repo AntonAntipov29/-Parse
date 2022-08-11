@@ -10,15 +10,16 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
-            double USD;
-            double dollar = 37.5;
+            decimal USD;
+            decimal dollar = 37.5M;
 
 
             Console.WriteLine("Введите сумму в долларах");
-            USD = double.Parse(Console.ReadLine());
+            USD = decimal.Parse(Console.ReadLine());
 
 
             Console.WriteLine("Сумма в гривне = " + USD * dollar);
+            Console.ReadKey();
 
 
         }
