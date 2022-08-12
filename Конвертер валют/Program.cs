@@ -10,13 +10,10 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
-            decimal inputInDollar;
-            decimal uahPerDollar = 36.92M;
             decimal euroPerDollar = 0.97M;
 
 
             Console.WriteLine("Введите сумму в долларах");
-            inputInDollar = decimal.Parse(Console.ReadLine());
 
 
            
