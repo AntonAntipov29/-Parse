@@ -10,19 +10,15 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
-            decimal USD;
-            decimal dollar = 37.5M;
-            decimal dollarValue = 36.92M;
             decimal euroPerDollar = 0.97M;
 
 
             Console.WriteLine("Введите сумму в долларах");
-            USD = decimal.Parse(Console.ReadLine());
 
 
-            Console.WriteLine("Сумма в гривне = " + USD * dollar);
-            Console.WriteLine("Сумма в гривне = " + USD * dollarValue);
-            Console.WriteLine("Сумма в евро = " + USD * euroPerDollar);
+           
+            Console.WriteLine("Сумма в гривне = " + inputInDollar * uahPerDollar);
+            Console.WriteLine("Сумма в евро = " + inputInDollar * euroPerDollar);
             Console.ReadKey();
 
 
