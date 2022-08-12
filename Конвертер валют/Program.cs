@@ -10,18 +10,32 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
-            decimal inputInDollar;
-            decimal uahPerDollar = 36.92M;
-            decimal euroPerDollar = 0.97M;
+            float gain;
+            float singleTaxRate = 0.05f;
+            float socialContRate = 0.22f;
+            float singleTax;
+            float socialCont;
 
+            //ask for gain value from user, and take it from console
 
-            Console.WriteLine("Введите сумму в долларах");
-            inputInDollar = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Введiть суму доходу за мiсяць в гривнi.");
 
+            gain = float.Parse(Console.ReadLine());
 
-           
-            Console.WriteLine("Сумма в гривне = " + inputInDollar * uahPerDollar);
-            Console.WriteLine("Сумма в евро = " + inputInDollar * euroPerDollar);
+            //maths operations with taxes 
+
+            singleTax = gain * singleTaxRate;
+            socialCont = gain * socialContRate;
+            gain -= singleTax;
+            gain -= socialCont;
+
+            //output results in console
+
+            Console.WriteLine("Дохiд до вирахування податкiв - " + (gain + singleTax + socialCont) + " UAH");
+            Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " UAH");
+            Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
+            Console.WriteLine("Прибуток пiсля вирахування податкiв - " + gain + " UAH");
+
             Console.ReadKey();
 
 
