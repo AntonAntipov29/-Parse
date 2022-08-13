@@ -13,11 +13,15 @@ namespace Конвертер_валют
             float userInput;
             string currency;
             float profit;
+            float profitUsd;
+            float profitEur;
             float singleTaxRate = 0.05f;
             float socialContRate = 0.22f;
             float minSalary = 6500;
             float singleTax;
             float socialCont;
+            float dollarRate = 0.027f;
+            float euroRate = 0.026f;
 
             //ask for gain values from user, and take it from console
 
