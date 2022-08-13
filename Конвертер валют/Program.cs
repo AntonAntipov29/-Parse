@@ -48,10 +48,35 @@ namespace Конвертер_валют
 
             //output results in console
 
-            Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
-            Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
-            Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " " + currency);
-            Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " " + currency);
+            
+            
+            if(currency == "UAH") 
+            {
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " " + currency);
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " " + currency);
+            }
+            else if(currency == "USD")
+            {
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont * dollarRate + " " + currency);
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitUsd + " " + currency);
+            }
+            else if (currency == "EUR")
+            {
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont * euroRate + " " + currency);
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitEur + " " + currency);
+            }
+            else
+            {
+                Console.WriteLine("Введена валюта невiрна");
+            }
+
+
 
             Console.ReadKey();
 
