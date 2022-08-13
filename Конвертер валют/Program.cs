@@ -52,6 +52,10 @@ namespace Конвертер_валют
             Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " UAH");
             Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
             Console.WriteLine("Прибуток пiсля вирахування податкiв - " + gain + " UAH");
+            Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
+            Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
+            Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " " + currency);
+            Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " " + currency);
 
             Console.ReadKey();
 
