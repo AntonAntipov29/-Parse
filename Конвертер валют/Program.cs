@@ -10,9 +10,12 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
-            float gain;
+            float userInput;
+            string currency;
+            float profit;
             float singleTaxRate = 0.05f;
             float socialContRate = 0.22f;
+            float minSalary = 6500;
             float singleTax;
             float socialCont;
 
