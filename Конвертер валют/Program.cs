@@ -22,6 +22,7 @@ namespace Конвертер_валют
             //ask for gain value from user, and take it from console
 
             Console.WriteLine("Введiть суму доходу за мiсяць в гривнi.");
+            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
 
             gain = float.Parse(Console.ReadLine());
 
