@@ -25,6 +25,15 @@ namespace Конвертер_валют
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
 
             gain = float.Parse(Console.ReadLine());
+            currency = (Console.ReadLine());
+
+            Console.WriteLine("Введена валюта - " + currency + ". Введiть сумму");
+
+            userInput = float.Parse(Console.ReadLine());
+
+            Console.WriteLine("Ви ввели " + userInput + " " + currency + ". Для розрахунку податкiв нажмiть ENTER");
+
+            Console.ReadKey();
 
             //maths operations with taxes 
 
