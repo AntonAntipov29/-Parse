@@ -41,6 +41,10 @@ namespace Конвертер_валют
             socialCont = gain * socialContRate;
             gain -= singleTax;
             gain -= socialCont;
+            singleTax = userInput * singleTaxRate;
+            socialCont = minSalary * socialContRate;
+            profit = userInput - singleTax - socialCont;
+           
 
             //output results in console
 
