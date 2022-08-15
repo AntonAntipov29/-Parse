@@ -52,24 +52,24 @@ namespace Конвертер_валют
             
             if(currency == "UAH") 
             {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " " + currency);
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " " + currency);
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " UAH" );
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " UAH");
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " UAH");
             }
             else if(currency == "USD")
             {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont * dollarRate + " " + currency);
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitUsd + " " + currency);
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput/dollarRate + " UAH");
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax/dollarRate + " UAH");
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitUsd/dollarRate + " UAH");
             }
             else if (currency == "EUR")
             {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " " + currency);
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " " + currency);
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont * euroRate + " " + currency);
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitEur + " " + currency);
+                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput/euroRate + " UAH");
+                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax/euroRate + " UAH");
+                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
+                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitEur/euroRate + " UAH");
             }
             else
             {
