@@ -30,7 +30,28 @@ namespace Конвертер_валют
             float dollarRate = 0.027f;
             float euroRate = 0.026f;
 
-            //ask for gain values from user, and take it from console
+            //age control 
+            Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
+            Console.WriteLine("Будь ласка введiть рiк вашого народження:");
+            yearOfBirth = uint.Parse(Console.ReadLine());
+            
+            if (yearOfBirth < rightYear && yearOfBirth > tooOld)
+	        {
+            isEighteen = true;
+            }
+            else
+            { 
+            isEighteen = false;
+            }
+            if (isEighteen)
+	        {
+            Console.WriteLine("Повнолiття пiдтверджено");
+	        }
+            else
+            { 
+            Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
+            Environment.Exit(0);
+            }
 
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
 
