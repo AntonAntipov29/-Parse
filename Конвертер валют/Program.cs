@@ -66,6 +66,7 @@ namespace Конвертер_валют
 
             //ask for gain values from user, and take it from console
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
+            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD чи EUR");
 
             currency = (Console.ReadLine());
 
