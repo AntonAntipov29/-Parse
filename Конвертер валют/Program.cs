@@ -102,8 +102,34 @@ namespace Конвертер_валют
                 Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitEur/euroRate + " UAH");
             }
             else
+            switch (currency)
             {
-                Console.WriteLine("Введена валюта невiрна");
+                case  "UAH":
+                case  "uah":
+                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
+                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
+                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+                    break;
+                case  "USD":
+                case  "usd":
+                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput/dollarRate} UAH");
+                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/dollarRate} UAH");
+                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitUsd/dollarRate} UAH");
+                    break;
+                case  "EUR":
+                case  "eur":
+                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput/euroRate} UAH");
+                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/euroRate} UAH");
+                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitEur/euroRate} UAH");
+                    break;
+                default:
+                    Console.WriteLine("Введена валюта невiрна");
+                    Main(args);
+                    break;
+ 
             }
 
 
