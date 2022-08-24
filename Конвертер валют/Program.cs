@@ -12,12 +12,19 @@ namespace Конвертер_валют
         {
             float userInput;
             string currency;
+            string finalAnswer;
+            uint yearOfBirth;
+            bool isEighteen;
+            uint rightYear = 2004;
+            uint tooOld = 1922;
             float profit;
             float profitUsd;
             float profitEur;
             float singleTaxRate = 0.05f;
+            float singleTaxRate = 0.05f; 
             float socialContRate = 0.22f;
             float minSalary = 6500;
+            const float MIN_SALARY = 6500;
             float singleTax;
             float socialCont;
             float dollarRate = 0.027f;
