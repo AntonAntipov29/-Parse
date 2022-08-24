@@ -14,6 +14,8 @@ namespace Конвертер_валют
         {
             
             float userInput;
+            float userInputUsd;
+            float userInputEur;
             string currency;
             string finalAnswer;
             uint yearOfBirth;
@@ -29,6 +31,8 @@ namespace Конвертер_валют
             float minSalary = 6500;
             const float MIN_SALARY = 6500;
             float singleTax;
+            float singleTaxUsd;
+            float singleTaxEur;
             float socialCont;
             float dollarRate = 0.027f;
             float euroRate = 0.026f;
