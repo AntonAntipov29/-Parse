@@ -57,11 +57,12 @@ namespace Конвертер_валют
 
             currency = (Console.ReadLine());
 
-            Console.WriteLine("Введена валюта - " + currency + ". Введiть сумму");
+            Console.WriteLine($"Введена валюта - {currency}. Введiть сумму");
 
             userInput = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Ви ввели " + userInput + " " + currency + ". Для розрахунку податкiв нажмiть ENTER");
+            Console.WriteLine($"Ви ввели {userInput} {currency}. Для розрахунку податкiв нажмiть ENTER");
 
             Console.ReadKey();
 
