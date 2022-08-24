@@ -131,12 +131,34 @@ namespace Конвертер_валют
                     break;
  
             }
+            
+            //final answer
 
+            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
+            finalAnswer = Console.ReadLine();
+            
+            switch (finalAnswer)
 
-
+	        {
+                case  "Calculate again"  :
+                case  "calculate again"  :
+                        Main(args);
+                    break;
+                case  "Exit" :
+                case  "exit" :
+                        Environment.Exit(0);
+                    break;
+		        default:
+                    Console.WriteLine("Невiдома команда, перевірте ввiд i спробуйте знову");
+                    Main(args);
+                    break;
+	           }   
+            
             Console.ReadKey();
+           
+          }
 
-
+                
         }
     }
-}
+
