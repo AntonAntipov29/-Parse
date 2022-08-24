@@ -53,12 +53,16 @@ namespace Конвертер_валют
             if (isEighteen)
 	        {
             Console.WriteLine("Повнолiття пiдтверджено");
+            Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
 	        }
             else
             { 
             Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
             Environment.Exit(0);
             }
+
+            Console.ReadKey();
+            Console.Clear();
 
             //ask for gain values from user, and take it from console
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
@@ -73,6 +77,8 @@ namespace Конвертер_валют
             Console.WriteLine($"Ви ввели {userInput} {currency}. Для розрахунку податкiв нажмiть ENTER");
 
             Console.ReadKey();
+
+            Console.Clear();
 
             //maths operations with taxes 
 
@@ -150,6 +156,7 @@ namespace Конвертер_валют
 	        {
                 case  "Calculate again"  :
                 case  "calculate again"  :
+                    Console.Clear();
                         Main(args);
                     break;
                 case  "Exit" :
@@ -158,6 +165,9 @@ namespace Конвертер_валют
                     break;
 		        default:
                     Console.WriteLine("Невiдома команда, перевірте ввiд i спробуйте знову");
+                    Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
+                    Console.ReadKey();
+                    Console.Clear();
                     Main(args);
                     break;
 	           }   
