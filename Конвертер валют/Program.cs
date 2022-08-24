@@ -50,6 +50,7 @@ namespace Конвертер_валют
             { 
             isEighteen = false;
             }
+
             if (isEighteen)
 	        {
             Console.WriteLine("Повнолiття пiдтверджено");
