@@ -90,6 +90,13 @@ namespace Конвертер_валют
             profitUsd = userInput - singleTax - socialCont * dollarRate;
             profitEur = userInput - singleTax - socialCont * euroRate;
 
+            profitUsd = (userInput - singleTax - socialCont * dollarRate)/dollarRate;
+            profitEur = (userInput - singleTax - socialCont * euroRate)/euroRate;
+            userInputEur = userInput/euroRate;
+            userInputUsd = userInput/dollarRate;
+            singleTaxUsd = singleTax/dollarRate;
+            singleTaxEur = singleTax/euroRate;
+            
 
             //output results in console
 
@@ -132,6 +139,9 @@ namespace Конвертер_валют
                     Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/dollarRate} UAH");
                     Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
                     Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitUsd/dollarRate} UAH");
+                    userInput = userInputUsd;
+                    singleTax = singleTaxUsd;
+                    profit = profitUsd;
                     break;
                 case  "EUR":
                 case  "eur":
@@ -139,6 +149,9 @@ namespace Конвертер_валют
                     Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/euroRate} UAH");
                     Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
                     Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitEur/euroRate} UAH");
+                    userInput = userInputEur;
+                    singleTax = singleTaxEur;
+                    profit = profitEur;
                     break;
                 default:
                     Console.WriteLine("Введена валюта невiрна");
@@ -147,6 +160,11 @@ namespace Конвертер_валют
  
             }
             
+                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
+                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
+                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+
             //final answer
 
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
