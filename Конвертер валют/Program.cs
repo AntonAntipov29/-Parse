@@ -25,10 +25,8 @@ namespace Конвертер_валют
             float profit;
             float profitUsd;
             float profitEur;
-            float singleTaxRate = 0.05f;
             float singleTaxRate = 0.05f; 
             float socialContRate = 0.22f;
-            float minSalary = 6500;
             const float MIN_SALARY = 6500;
             float singleTax;
             float singleTaxUsd;
@@ -53,7 +51,6 @@ namespace Конвертер_валют
 
             if (isEighteen)
 	        {
-            Console.WriteLine("Повнолiття пiдтверджено");
             Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
 	        }
             else
@@ -66,7 +63,6 @@ namespace Конвертер_валют
             Console.Clear();
 
             //ask for gain values from user, and take it from console
-            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD чи EUR");
 
             currency = (Console.ReadLine());
@@ -75,7 +71,6 @@ namespace Конвертер_валют
 
             userInput = float.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ви ввели " + userInput + " " + currency + ". Для розрахунку податкiв нажмiть ENTER");
             Console.WriteLine($"Ви ввели {userInput} {currency}. Для розрахунку податкiв нажмiть ENTER");
 
             Console.ReadKey();
@@ -85,12 +80,8 @@ namespace Конвертер_валют
             //maths operations with taxes 
 
             singleTax = userInput * singleTaxRate;
-            socialCont = minSalary * socialContRate;
             socialCont = MIN_SALARY * socialContRate;
             profit = userInput - singleTax - socialCont;
-            profitUsd = userInput - singleTax - socialCont * dollarRate;
-            profitEur = userInput - singleTax - socialCont * euroRate;
-
             profitUsd = (userInput - singleTax - socialCont * dollarRate)/dollarRate;
             profitEur = (userInput - singleTax - socialCont * euroRate)/euroRate;
             userInputEur = userInput/euroRate;
@@ -101,55 +92,19 @@ namespace Конвертер_валют
 
             //output results in console
 
-            
-            
-            if(currency == "UAH") 
-            {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput + " UAH" );
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax + " UAH");
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profit + " UAH");
-            }
-            else if(currency == "USD")
-            {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput/dollarRate + " UAH");
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax/dollarRate + " UAH");
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitUsd/dollarRate + " UAH");
-            }
-            else if (currency == "EUR")
-            {
-                Console.WriteLine("Дохiд до вирахування податкiв - " + userInput/euroRate + " UAH");
-                Console.WriteLine("Всього єдиного податку (5%) - " + singleTax/euroRate + " UAH");
-                Console.WriteLine("Всього єдиного соцiального внеску (22%) - " + socialCont + " UAH");
-                Console.WriteLine("Прибуток пiсля вирахування податкiв - " + profitEur/euroRate + " UAH");
-            }
-            else
             switch (currency)
             {
                 case  "UAH":
                 case  "uah":
-                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
-                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
-                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
                     break;
                 case  "USD":
                 case  "usd":
-                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput/dollarRate} UAH");
-                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/dollarRate} UAH");
-                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitUsd/dollarRate} UAH");
                     userInput = userInputUsd;
                     singleTax = singleTaxUsd;
                     profit = profitUsd;
                     break;
                 case  "EUR":
                 case  "eur":
-                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput/euroRate} UAH");
-                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax/euroRate} UAH");
-                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profitEur/euroRate} UAH");
                     userInput = userInputEur;
                     singleTax = singleTaxEur;
                     profit = profitEur;
@@ -158,7 +113,6 @@ namespace Конвертер_валют
                     Console.WriteLine("Введена валюта невiрна");
                     Main(args);
                     break;
- 
             }
             
                     Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
@@ -184,7 +138,6 @@ namespace Конвертер_валют
                         Environment.Exit(0);
                     break;
 		        default:
-                    Console.WriteLine("Невiдома команда, перевірте ввiд i спробуйте знову");
                     Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
                     Console.ReadKey();
                     Console.Clear();
