@@ -70,6 +70,7 @@ namespace Конвертер_валют
 
             singleTax = userInput * singleTaxRate;
             socialCont = minSalary * socialContRate;
+            socialCont = MIN_SALARY * socialContRate;
             profit = userInput - singleTax - socialCont;
             profitUsd = userInput - singleTax - socialCont * dollarRate;
             profitEur = userInput - singleTax - socialCont * euroRate;
