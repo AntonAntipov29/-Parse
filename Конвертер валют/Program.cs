@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,7 @@ namespace Конвертер_валют
     {
         static void Main(string[] args)
         {
+            
             float userInput;
             string currency;
             string finalAnswer;
@@ -53,6 +56,7 @@ namespace Конвертер_валют
             Environment.Exit(0);
             }
 
+            //ask for gain values from user, and take it from console
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд (UAH, USD чи EUR)");
 
             currency = (Console.ReadLine());
