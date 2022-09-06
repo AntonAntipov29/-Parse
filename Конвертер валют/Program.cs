@@ -51,72 +51,52 @@ namespace Конвертер_валют
 
         void TaxCalculator()
         {
-            float userInput;
+            float yearProfit;
             string currency;
-            float userInputUsd;
-            float userInputEur;
             float profit;
-            float profitUsd;
-            float profitEur;
             float singleTaxRate = 0.05f; 
             float socialContRate = 0.22f;
             const float MIN_SALARY = 6500;
-            float singleTax;
-            float singleTaxUsd;
-            float singleTaxEur;
+            float singleTax;    
             float socialCont;
-            float dollarRate = 0.027f;
-            float euroRate = 0.026f;
-            
+            float dollarRate = 39.77f;
+            float euroRate = 39.4f;
+            float hryvniaRate = 1f;
+            string dollarIndex = "USD";
+            string euroIndex = "EUR";
+            string hryvniaIndex = "UAH";
+            float currencyVariant = 0;
 
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
             currency = GetUserInput(TypeOfUserInput.currency);
             Console.WriteLine($"Введена валюта - {currency}. ");
             Console.ReadKey();
-            userInput = YearProfit();
-            Console.WriteLine($"Ви ввели {userInput} {currency}. Для розрахунку податкiв натиснiть ENTER");
+            yearProfit = YearProfit();
+            Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
             Console.ReadKey();
             Console.Clear();
 
             //maths operations with taxes 
+            if (currency == hryvniaIndex)
+	         {
+                currencyVariant = hryvniaRate;
+	         }else if (currency == dollarIndex)
+            {
+                currencyVariant = dollarRate;
+            }else if (currency == euroIndex)
+            {
+                currencyVariant = euroRate;
+            }
+            
 
-            singleTax = userInput * singleTaxRate;
+            yearProfit = yearProfit * currencyVariant;
+            singleTax = yearProfit * singleTaxRate;
             socialCont = MIN_SALARY * socialContRate;
-            profit = userInput - singleTax - socialCont;
+            profit = yearProfit - singleTax - socialCont;
                       
             //output results in console
 
-            switch (currency)
-            {
-             case  "UAH":
-             case  "uah":
-             break;
-             case  "USD":
-             case  "usd":
-                singleTaxUsd = singleTax/dollarRate;
-                userInputUsd = userInput/dollarRate;
-                profitUsd = (userInput - singleTax - socialCont * dollarRate)/dollarRate;
-                userInput = userInputUsd;
-                singleTax = singleTaxUsd;
-                profit = profitUsd;
-             break;
-             case  "EUR":
-             case  "eur":
-                profitEur = (userInput - singleTax - socialCont * euroRate)/euroRate;
-                userInputEur = userInput/euroRate;
-                singleTaxEur = singleTax/euroRate;
-                userInput = userInputEur;
-                singleTax = singleTaxEur;
-                profit = profitEur;
-             break;
-             default:
-               Console.WriteLine("Введена валюта невiрна");
-               Console.Clear();
-               AgeControl();
-             break;
-            }
-         
-             Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
+             Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH" );
              Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
              Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
              Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
