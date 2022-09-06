@@ -127,25 +127,6 @@ namespace Конвертер_валют
             string finalAnswer;
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
             finalAnswer = GetUserInput(TypeOfUserInput.command);
-            
-            switch (finalAnswer)
-	        {
-             case  "Calculate again"  :
-             case  "calculate again"  :
-               Console.Clear();
-               AgeControl();
-             break;
-             case  "Exit" :
-             case  "exit" :
-               Environment.Exit(0);
-             break;
-		     default:
-               Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
-               Console.ReadKey();
-               Console.Clear();
-               FinalAnswer();
-             break;
-	        }   
             Console.ReadKey();
         }
         string GetUserInput(TypeOfUserInput type)
@@ -219,6 +200,24 @@ namespace Конвертер_валют
                }
               else
                {
+                switch (commandInput)
+	            {
+                  case  "Calculate again"  :
+                  case  "calculate again"  :
+                   Console.Clear();
+                   AgeControl();       
+                  break;
+                  case  "Exit" :
+                  case  "exit" :
+                   Environment.Exit(0);
+                  break;
+		          default:
+                   Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
+                   Console.ReadKey();
+                   Console.Clear();
+                   FinalAnswer();
+                  break;
+	            }
                 returnInput = commandInput;
                }
             }
