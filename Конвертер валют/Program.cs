@@ -23,9 +23,6 @@ namespace Конвертер_валют
 
             //final answer
             FinalAnswer();
-        }
-
-        
 
             void AgeControl()
         {   
@@ -160,7 +157,8 @@ namespace Конвертер_валют
                {
                 Console.Clear();
                 Console.WriteLine("Помилка! Будь ласка вводьте ваш дохiд числами!");
-                BasisBlock();
+                Console.ReadKey();
+                TaxCalculator();
                }
             }else if (type == TypeOfUserInput.currency)
             {
@@ -232,6 +230,7 @@ namespace Конвертер_валют
             }
          return returnInput;
         }
-        }
+        } 
     }
+}
 
