@@ -165,16 +165,36 @@ namespace Конвертер_валют
             }else if (type == TypeOfUserInput.currency)
             {
               string currencyInput;
+              string dollarIndex = "USD";
+              string euroIndex = "EUR";
+              string hryvniaIndex = "UAH";
               currencyInput = Console.ReadLine();
               if (int.TryParse(currencyInput, out int number))
                {
                 Console.Clear();
                 Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR.");
-                BasisBlock();
+                TaxCalculator();
                }
               else
                {
-                returnInput = currencyInput;
+                if (currencyInput == hryvniaIndex)
+	            {
+                 returnInput = currencyInput;
+	            }else if (currencyInput == dollarIndex)
+                {
+                 returnInput = currencyInput;
+                }else if (currencyInput == euroIndex)
+                {
+                 returnInput = currencyInput;
+                }
+                else
+                {
+                 Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR.");
+                 Console.ReadKey();
+                 Console.Clear();
+                 Main(args);
+                }
+                
                }
               
             }else if (type == TypeOfUserInput.command)
