@@ -19,7 +19,7 @@ namespace Конвертер_валют
             AgeControl(); 
 
             //ask for gain values from user, maths operations with taxes, output results in console
-            BasisBlock();
+            TaxCalculator();
 
             //final answer
             FinalAnswer();
@@ -36,7 +36,7 @@ namespace Конвертер_валют
             Console.Clear();
         }
 
-        static void BasisBlock()
+        void TaxCalculator()
         {
             float userInput;
             string currency;
