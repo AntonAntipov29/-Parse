@@ -136,28 +136,17 @@ namespace Конвертер_валют
             if (type == TypeOfUserInput.year)
             {
               string yearOfBirth;  
-              uint yearOfBirthInt;
-              uint rightYear = 2004;
-              uint tooOld = 1922;
+              
               yearOfBirth = Console.ReadLine();
               if (int.TryParse(yearOfBirth, out int number))
 	          {
-                yearOfBirthInt = Convert.ToUInt32(yearOfBirth);
-                if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
-	            {            
-                Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
-                }
-                else
-                { 
-                Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
-                Environment.Exit(0);
-                }
+                returnInput =  yearOfBirth;
 	          }
               else
               {
                 Console.Clear();
                 Console.WriteLine("Будь ласка введiть рiк вашого народження числом!");
-                GetUserInput(TypeOfUserInput.year);
+                AgeControl();
               } 
             }else if (type == TypeOfUserInput.money)
             {
