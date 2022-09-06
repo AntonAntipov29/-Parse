@@ -27,8 +27,8 @@ namespace Конвертер_валют
 
         
 
-        static void AgeControl()
-        {         
+            void AgeControl()
+        {   
             Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
             Console.WriteLine("Будь ласка введiть рiк вашого народження:");
             GetUserInput(TypeOfUserInput.year);
@@ -109,7 +109,7 @@ namespace Конвертер_валют
              Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
         }
 
-        static int YearProfit()
+        int YearProfit()
         {
             string [] months = {"Сiчень","Лютий","Березень","Квiтень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"};
             int [] monthsProfit = new int[12];
@@ -129,7 +129,7 @@ namespace Конвертер_валют
             return result;
         } 
 
-        static void FinalAnswer()
+        void FinalAnswer()
         {
             string finalAnswer;
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
@@ -155,7 +155,7 @@ namespace Конвертер_валют
 	        }   
             Console.ReadKey();
         }
-        static string GetUserInput(TypeOfUserInput type)
+        string GetUserInput(TypeOfUserInput type)
         {
             string returnInput = "";
 
