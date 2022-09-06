@@ -29,9 +29,22 @@ namespace Конвертер_валют
 
             void AgeControl()
         {   
+            uint rightYear = 2004;
+            uint tooOld = 1922;
+            uint yearOfBirthInt;
             Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
             Console.WriteLine("Будь ласка введiть рiк вашого народження:");
-            GetUserInput(TypeOfUserInput.year);
+            yearOfBirthInt =Convert.ToUInt32(GetUserInput(TypeOfUserInput.year));
+            if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
+	            {            
+                Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
+                }
+                else
+                { 
+                Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
+                Environment.Exit(0);
+                }
+
             Console.ReadKey();
             Console.Clear();
         }
