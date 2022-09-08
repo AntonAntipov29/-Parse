@@ -24,26 +24,25 @@ namespace Конвертер_валют
             AgeControl();
 
             void AgeControl()
-        {   
-            uint rightYear = 2004;
-            uint tooOld = 1922;
-            uint yearOfBirthInt;
-            Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
-            Console.WriteLine("Будь ласка введiть рiк вашого народження:");
-            yearOfBirthInt =Convert.ToUInt32(GetUserInput(TypeOfUserInput.year));
-            if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
-	            {            
-                Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
+            {
+                uint rightYear = 2004;
+                uint tooOld = 1922;
+                uint yearOfBirthInt;
+                Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
+                Console.WriteLine("Будь ласка введiть рiк вашого народження:");
+                yearOfBirthInt = Convert.ToUInt32(GetUserInput(TypeOfUserInput.year));
+                if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
+                {
+                    Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
                 }
                 else
-                { 
-                Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
-                Environment.Exit(0);
+                {
+                    Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
+                    Environment.Exit(0);
                 }
 
-            Console.ReadKey();
-            Console.Clear();
-        }
+                Console.ReadKey();
+                Console.Clear();
 
         void TaxCalculator()
         {
@@ -131,15 +130,30 @@ namespace Конвертер_валют
 
             if (type == TypeOfUserInput.year)
             {
-              string yearOfBirth;  
-              
-              yearOfBirth = Console.ReadLine();
-              if (int.TryParse(yearOfBirth, out int number))
-	          {
-                returnInput =  yearOfBirth;
-	          }
-              else
-              {
+                float yearProfit;
+                string currency;
+                float profit;
+                float singleTaxRate = 0.05f;
+                float socialContRate = 0.22f;
+                const float MIN_SALARY = 6500;
+                float singleTax;
+                float socialCont;
+                float dollarRate = 39.77f;
+                float euroRate = 39.4f;
+                float hryvniaRate = 1f;
+                string dollarIndex = "USD";
+                string euroIndex = "EUR";
+                string hryvniaIndex = "UAH";
+                float currencyVariant = 0;
+
+                
+                Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                currency = GetUserInput(TypeOfUserInput.currency);
+                Console.WriteLine($"Введена валюта - {currency}. ");
+                Console.ReadKey();
+                yearProfit = YearProfit();
+                Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
+                Console.ReadKey();
                 Console.Clear();
                 Console.WriteLine("Будь ласка введiть рiк вашого народження числом!");
                 AgeControl();
