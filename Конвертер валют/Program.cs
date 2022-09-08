@@ -107,20 +107,25 @@ namespace Конвертер_валют
 
             int YearProfit()
             {
-              string moneyInput;
-              moneyInput = Console.ReadLine();
-              if (int.TryParse(moneyInput, out int number))
-               {
-                returnInput = moneyInput;
-               }
-              else
-               {
-                Console.Clear();
-                Console.WriteLine("Помилка! Будь ласка вводьте ваш дохiд числами!");
-                Console.ReadKey();
-                TaxCalculator();
-               }
-            }else if (type == TypeOfUserInput.currency)
+                string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
+                int[] monthsProfit = new int[12];
+                int count = 0;
+                int result = 0;
+                int returnInt;
+
+                while (count < months.Length)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Введiть дохiд за " + months[count]);
+                    returnInt = Convert.ToInt32(GetUserInput(TypeOfUserInput.money));
+                    monthsProfit[count] = returnInt;
+                    result += monthsProfit[count];
+                    count++;
+                }
+                return result;
+            }
+
+            void FinalAnswer()
             {
               string currencyInput;
               string dollarIndex = "USD";
