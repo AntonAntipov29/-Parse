@@ -165,8 +165,10 @@ namespace Конвертер_валют
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом! Програму буде закрито.");
-                        Environment.Exit(0);
+                        Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        AgeControl();
                     }
                 }
                 else if (type == TypeOfUserInput.money)
