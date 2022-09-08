@@ -20,14 +20,8 @@ namespace Конвертер_валют
 
         static void Main(string[] args)
         {
-            //age control 
-            AgeControl(); 
-
-            //ask for gain values from user, maths operations with taxes, output results in console
-            TaxCalculator();
-
-            //final answer
-            FinalAnswer();
+              
+            AgeControl();
 
             void AgeControl()
         {   
