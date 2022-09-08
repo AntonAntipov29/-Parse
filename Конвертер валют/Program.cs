@@ -4,152 +4,243 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Конвертер_валют
 {
     internal class Program
     {
+        enum TypeOfUserInput{command, currency, money, year};
+        private const string ExitIndex = "Exit";
+        private const string CalcAgainIndex = "Calculate again";
+        private const string dollarIndex = "USD";
+        private const string euroIndex = "EUR";
+        private const string hryvniaIndex = "UAH";
+
         static void Main(string[] args)
         {
-            
-            float userInput;
-            float userInputUsd;
-            float userInputEur;
-            string currency;
-            string finalAnswer;
-            uint yearOfBirth;
-            bool isEighteen;
-            uint rightYear = 2004;
-            uint tooOld = 1922;
-            float profit;
-            float profitUsd;
-            float profitEur;
-            float singleTaxRate = 0.05f; 
-            float socialContRate = 0.22f;
-            const float MIN_SALARY = 6500;
-            float singleTax;
-            float singleTaxUsd;
-            float singleTaxEur;
-            float socialCont;
-            float dollarRate = 0.027f;
-            float euroRate = 0.026f;
+              
+            AgeControl();
 
-            //age control 
-            Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
-            Console.WriteLine("Будь ласка введiть рiк вашого народження:");
-            yearOfBirth = uint.Parse(Console.ReadLine());
-            
-            if (yearOfBirth < rightYear && yearOfBirth > tooOld)
-	        {
-            isEighteen = true;
-            }
-            else
-            { 
-            isEighteen = false;
-            }
-
-            if (isEighteen)
-	        {
-            Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
-	        }
-            else
-            { 
-            Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
-            Environment.Exit(0);
-            }
-
-            Console.ReadKey();
-            Console.Clear();
-
-            //ask for gain values from user, and take it from console
-            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD чи EUR");
-
-            currency = (Console.ReadLine());
-
-            Console.WriteLine($"Введена валюта - {currency}. Введiть сумму");
-
-            userInput = float.Parse(Console.ReadLine());
-
-            Console.WriteLine($"Ви ввели {userInput} {currency}. Для розрахунку податкiв нажмiть ENTER");
-
-            Console.ReadKey();
-
-            Console.Clear();
-
-            //maths operations with taxes 
-
-            singleTax = userInput * singleTaxRate;
-            socialCont = MIN_SALARY * socialContRate;
-            profit = userInput - singleTax - socialCont;
-            profitUsd = (userInput - singleTax - socialCont * dollarRate)/dollarRate;
-            profitEur = (userInput - singleTax - socialCont * euroRate)/euroRate;
-            userInputEur = userInput/euroRate;
-            userInputUsd = userInput/dollarRate;
-            singleTaxUsd = singleTax/dollarRate;
-            singleTaxEur = singleTax/euroRate;
-            
-
-            //output results in console
-
-            switch (currency)
+            void AgeControl()
             {
-                case  "UAH":
-                case  "uah":
-                    break;
-                case  "USD":
-                case  "usd":
-                    userInput = userInputUsd;
-                    singleTax = singleTaxUsd;
-                    profit = profitUsd;
-                    break;
-                case  "EUR":
-                case  "eur":
-                    userInput = userInputEur;
-                    singleTax = singleTaxEur;
-                    profit = profitEur;
-                    break;
-                default:
-                    Console.WriteLine("Введена валюта невiрна");
-                    Main(args);
-                    break;
+                uint rightYear = 2004;
+                uint tooOld = 1922;
+                uint yearOfBirthInt;
+                Console.WriteLine("Вiтеємо Вас в калькуляторi податкiв!");
+                Console.WriteLine("Будь ласка введiть рiк вашого народження:");
+                yearOfBirthInt = Convert.ToUInt32(GetUserInput(TypeOfUserInput.year));
+                if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
+                {
+                    Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
+                }
+                else
+                {
+                    Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
+                    Environment.Exit(0);
+                }
+
+                Console.ReadKey();
+                Console.Clear();
+
+                TaxCalculator();
             }
-            
-                    Console.WriteLine($"Дохiд до вирахування податкiв - {userInput} UAH" );
-                    Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
-                    Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                    Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
 
-            //final answer
-
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
-            finalAnswer = Console.ReadLine();
-            
-            switch (finalAnswer)
-
-	        {
-                case  "Calculate again"  :
-                case  "calculate again"  :
-                    Console.Clear();
-                        Main(args);
-                    break;
-                case  "Exit" :
-                case  "exit" :
-                        Environment.Exit(0);
-                    break;
-		        default:
-                    Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Main(args);
-                    break;
-	           }   
-            
-            Console.ReadKey();
-           
-          }
+            void TaxCalculator()
+            {
+                float yearProfit;
+                string currency;
+                float profit;
+                float singleTaxRate = 0.05f;
+                float socialContRate = 0.22f;
+                const float MIN_SALARY = 6500;
+                float singleTax;
+                float socialCont;
+                float dollarRate = 39.77f;
+                float euroRate = 39.4f;
+                float hryvniaRate = 1f;
+                string dollarIndex = "USD";
+                string euroIndex = "EUR";
+                string hryvniaIndex = "UAH";
+                float currencyVariant = 0;
 
                 
-        }
+                Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                currency = GetUserInput(TypeOfUserInput.currency);
+                Console.WriteLine($"Введена валюта - {currency}. ");
+                Console.ReadKey();
+                yearProfit = YearProfit();
+                Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
+                Console.ReadKey();
+                Console.Clear();
+
+                //maths operations with taxes 
+                if (currency == hryvniaIndex)
+                {
+                    currencyVariant = hryvniaRate;
+                }
+                else if (currency == dollarIndex)
+                {
+                    currencyVariant = dollarRate;
+                }
+                else if (currency == euroIndex)
+                {
+                    currencyVariant = euroRate;
+                }
+
+
+                yearProfit = yearProfit * currencyVariant;
+                singleTax = yearProfit * singleTaxRate;
+                socialCont = MIN_SALARY * socialContRate;
+                profit = yearProfit - singleTax - socialCont;
+
+                //output results in console
+
+                Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH");
+                Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
+                Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+
+                FinalAnswer();
+            }
+
+            int YearProfit()
+            {
+                string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
+                int[] monthsProfit = new int[12];
+                int count = 0;
+                int result = 0;
+                int returnInt;
+
+                while (count < months.Length)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Введiть дохiд за " + months[count]);
+                    returnInt = Convert.ToInt32(GetUserInput(TypeOfUserInput.money));
+                    monthsProfit[count] = returnInt;
+                    result += monthsProfit[count];
+                    count++;
+                }
+                return result;
+            }
+
+            void FinalAnswer()
+            {
+                string finalAnswer = ""; 
+
+                Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
+                finalAnswer = GetUserInput(TypeOfUserInput.command);
+
+                if (finalAnswer == ExitIndex)
+                {
+                    Environment.Exit(0);
+                }
+                else if (finalAnswer == CalcAgainIndex)
+                {
+
+                    TaxCalculator();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
+                    FinalAnswer();
+                }
+
+                Console.ReadKey();
+            }
+            string GetUserInput(TypeOfUserInput type)
+            {
+                string returnInput = "";
+
+                if (type == TypeOfUserInput.year)
+                {
+                    string yearOfBirth;
+                    yearOfBirth = Console.ReadLine();
+                    if (int.TryParse(yearOfBirth, out int number))
+                    {
+                        returnInput = yearOfBirth;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        AgeControl();
+                    }
+                }
+                else if (type == TypeOfUserInput.money)
+                {
+                    string moneyInput;
+                    moneyInput = Console.ReadLine();
+                    if (int.TryParse(moneyInput, out int number))
+                    {
+                        returnInput = moneyInput;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Помилка! Будь ласка вводьте числами!");
+                        Console.ReadKey();
+                        TaxCalculator();
+                    }
+                }
+                else if (type == TypeOfUserInput.currency)
+                {
+                    string currencyInput;
+                    currencyInput = Console.ReadLine();
+                    if (int.TryParse(currencyInput, out int number))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                        TaxCalculator();
+                    }
+                    else
+                    {
+                        if (currencyInput == hryvniaIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else if (currencyInput == dollarIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else if (currencyInput == euroIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                            Console.ReadKey();
+                            Console.Clear();
+                            TaxCalculator();
+                        }
+
+                    }
+
+                }
+                else if (type == TypeOfUserInput.command)
+                {
+                    string commandInput;
+                    commandInput = Console.ReadLine();
+
+                    if (commandInput == CalcAgainIndex)
+                    {
+
+                        returnInput = commandInput;
+                    }
+                    else if (commandInput == ExitIndex)
+                    {
+                        returnInput = commandInput;
+                    }
+
+                }
+                return returnInput;
+            }
+        } 
     }
+}
 
