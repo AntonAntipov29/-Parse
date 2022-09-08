@@ -74,10 +74,38 @@ namespace Конвертер_валют
                 Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
                 Console.ReadKey();
                 Console.Clear();
-                Console.WriteLine("Будь ласка введiть рiк вашого народження числом!");
-                AgeControl();
-              } 
-            }else if (type == TypeOfUserInput.money)
+
+                //maths operations with taxes 
+                if (currency == hryvniaIndex)
+                {
+                    currencyVariant = hryvniaRate;
+                }
+                else if (currency == dollarIndex)
+                {
+                    currencyVariant = dollarRate;
+                }
+                else if (currency == euroIndex)
+                {
+                    currencyVariant = euroRate;
+                }
+
+
+                yearProfit = yearProfit * currencyVariant;
+                singleTax = yearProfit * singleTaxRate;
+                socialCont = MIN_SALARY * socialContRate;
+                profit = yearProfit - singleTax - socialCont;
+
+                //output results in console
+
+                Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH");
+                Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
+                Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
+                Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+
+                FinalAnswer();
+            }
+
+            int YearProfit()
             {
               string moneyInput;
               moneyInput = Console.ReadLine();
