@@ -134,56 +134,110 @@ namespace Конвертер_валют
 
                 if (finalAnswer == ExitIndex)
                 {
-                 returnInput = currencyInput;
-                }else if (currencyInput == euroIndex)
+                    Environment.Exit(0);
+                }
+                else if (finalAnswer == CalcAgainIndex)
                 {
-                 returnInput = currencyInput;
+
+                    TaxCalculator();
                 }
                 else
                 {
-                 Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR.");
-                 Console.ReadKey();
-                 Console.Clear();
-                 Main(args);
+                    Console.Clear();
+                    Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
+                    FinalAnswer();
                 }
-                
-               }
-              
-            }else if (type == TypeOfUserInput.command)
-            {
-              string commandInput;
-              commandInput = Console.ReadLine();
-              if (int.TryParse(commandInput, out int number))
-               {
-                Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
-                FinalAnswer();
-               }
-              else
-               {
-                switch (commandInput)
-	            {
-                  case  "Calculate again"  :
-                  case  "calculate again"  :
-                   Console.Clear();
-                   AgeControl();       
-                  break;
-                  case  "Exit" :
-                  case  "exit" :
-                   Environment.Exit(0);
-                  break;
-		          default:
-                   Console.WriteLine("Невiдома команда, перевiрте ввiд i спробуйте знову");
-                   Console.ReadKey();
-                   Console.Clear();
-                   FinalAnswer();
-                  break;
-	            }
-                returnInput = commandInput;
-               }
+
+                Console.ReadKey();
             }
-         return returnInput;
-        }
+            string GetUserInput(TypeOfUserInput type)
+            {
+                string returnInput = "";
+
+                if (type == TypeOfUserInput.year)
+                {
+                    string yearOfBirth;
+                    yearOfBirth = Console.ReadLine();
+                    if (int.TryParse(yearOfBirth, out int number))
+                    {
+                        returnInput = yearOfBirth;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом! Програму буде закрито.");
+                        Environment.Exit(0);
+                    }
+                }
+                else if (type == TypeOfUserInput.money)
+                {
+                    string moneyInput;
+                    moneyInput = Console.ReadLine();
+                    if (int.TryParse(moneyInput, out int number))
+                    {
+                        returnInput = moneyInput;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Помилка! Будь ласка вводьте числами!");
+                        Console.ReadKey();
+                        TaxCalculator();
+                    }
+                }
+                else if (type == TypeOfUserInput.currency)
+                {
+                    string currencyInput;
+                    currencyInput = Console.ReadLine();
+                    if (int.TryParse(currencyInput, out int number))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                        TaxCalculator();
+                    }
+                    else
+                    {
+                        if (currencyInput == hryvniaIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else if (currencyInput == dollarIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else if (currencyInput == euroIndex)
+                        {
+                            returnInput = currencyInput;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                            Console.ReadKey();
+                            Console.Clear();
+                            TaxCalculator();
+                        }
+
+                    }
+
+                }
+                else if (type == TypeOfUserInput.command)
+                {
+                    string commandInput;
+                    commandInput = Console.ReadLine();
+
+                    if (commandInput == CalcAgainIndex)
+                    {
+
+                        returnInput = commandInput;
+                    }
+                    else if (commandInput == ExitIndex)
+                    {
+                        returnInput = commandInput;
+                    }
+
+                }
+                return returnInput;
+            }
         } 
     }
 }
