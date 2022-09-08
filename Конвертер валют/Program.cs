@@ -12,7 +12,12 @@ namespace Конвертер_валют
     internal class Program
     {
         enum TypeOfUserInput{command, currency, money, year};
-        
+        private const string ExitIndex = "Exit";
+        private const string CalcAgainIndex = "Calculate again";
+        private const string dollarIndex = "USD";
+        private const string euroIndex = "EUR";
+        private const string hryvniaIndex = "UAH";
+
         static void Main(string[] args)
         {
             //age control 
