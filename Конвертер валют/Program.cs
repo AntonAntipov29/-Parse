@@ -44,91 +44,10 @@ namespace Конвертер_валют
                 Console.ReadKey();
                 Console.Clear();
 
-        void TaxCalculator()
-        {
-            float yearProfit;
-            string currency;
-            float profit;
-            float singleTaxRate = 0.05f; 
-            float socialContRate = 0.22f;
-            const float MIN_SALARY = 6500;
-            float singleTax;    
-            float socialCont;
-            float dollarRate = 39.77f;
-            float euroRate = 39.4f;
-            float hryvniaRate = 1f;
-            string dollarIndex = "USD";
-            string euroIndex = "EUR";
-            string hryvniaIndex = "UAH";
-            float currencyVariant = 0;
-
-            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
-            currency = GetUserInput(TypeOfUserInput.currency);
-            Console.WriteLine($"Введена валюта - {currency}. ");
-            Console.ReadKey();
-            yearProfit = YearProfit();
-            Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
-            Console.ReadKey();
-            Console.Clear();
-
-            //maths operations with taxes 
-            if (currency == hryvniaIndex)
-	         {
-                currencyVariant = hryvniaRate;
-	         }else if (currency == dollarIndex)
-            {
-                currencyVariant = dollarRate;
-            }else if (currency == euroIndex)
-            {
-                currencyVariant = euroRate;
+                TaxCalculator();
             }
-            
 
-            yearProfit = yearProfit * currencyVariant;
-            singleTax = yearProfit * singleTaxRate;
-            socialCont = MIN_SALARY * socialContRate;
-            profit = yearProfit - singleTax - socialCont;
-                      
-            //output results in console
-
-             Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH" );
-             Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
-             Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-             Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
-        }
-
-        int YearProfit()
-        {
-            string [] months = {"Сiчень","Лютий","Березень","Квiтень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"};
-            int [] monthsProfit = new int[12];
-            int count = 0;
-            int result = 0;
-            int returnInt;
-            
-            while(count < months.Length)
-            {
-            Console.Clear();
-            Console.WriteLine("Введiть дохiд за " + months[count]);
-            returnInt = Convert.ToInt32(GetUserInput(TypeOfUserInput.money));
-            monthsProfit[count] = returnInt;
-            result += monthsProfit[count];
-            count++;
-            }
-            return result;
-        } 
-
-        void FinalAnswer()
-        {
-            string finalAnswer;
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
-            finalAnswer = GetUserInput(TypeOfUserInput.command);
-            Console.ReadKey();
-        }
-        string GetUserInput(TypeOfUserInput type)
-        {
-            string returnInput = "";
-
-            if (type == TypeOfUserInput.year)
+            void TaxCalculator()
             {
                 float yearProfit;
                 string currency;
