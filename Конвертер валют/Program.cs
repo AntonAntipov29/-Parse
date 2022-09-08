@@ -127,23 +127,12 @@ namespace Конвертер_валют
 
             void FinalAnswer()
             {
-              string currencyInput;
-              string dollarIndex = "USD";
-              string euroIndex = "EUR";
-              string hryvniaIndex = "UAH";
-              currencyInput = Console.ReadLine();
-              if (int.TryParse(currencyInput, out int number))
-               {
-                Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR.");
-                TaxCalculator();
-               }
-              else
-               {
-                if (currencyInput == hryvniaIndex)
-	            {
-                 returnInput = currencyInput;
-	            }else if (currencyInput == dollarIndex)
+                string finalAnswer = ""; 
+
+                Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
+                finalAnswer = GetUserInput(TypeOfUserInput.command);
+
+                if (finalAnswer == ExitIndex)
                 {
                  returnInput = currencyInput;
                 }else if (currencyInput == euroIndex)
