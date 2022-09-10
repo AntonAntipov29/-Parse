@@ -109,21 +109,43 @@ namespace Конвертер_валют
                 FinalAnswer();
             }
 
-            int YearProfit()
+            double YearProfit()
             {
                 string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
-                int[] monthsProfit = new int[12];
+                string[] monthsProfit = new string[12];
+                double[] monthsProfitDouble = new double[12];
                 int count = 0;
-                int result = 0;
-                int returnInt;
+                double result = 0;
+
+
+                NumberFormatInfo formatComa = new NumberFormatInfo()
+                {
+                    NumberDecimalSeparator = ",",
+                };
+                NumberFormatInfo formatDot = new NumberFormatInfo()
+                {
+                    NumberDecimalSeparator = ".",
+                };
 
                 while (count < months.Length)
                 {
                     Console.Clear();
                     Console.WriteLine("Введiть дохiд за " + months[count]);
-                    returnInt = Convert.ToInt32(GetUserInput(TypeOfUserInput.money));
-                    monthsProfit[count] = returnInt;
-                    result += monthsProfit[count];
+                    monthsProfit[count] = GetUserInput(TypeOfUserInput.money);
+
+                    if (monthsProfit[count].Contains(","))
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count], formatComa);
+                    }
+                    else if (monthsProfit[count].Contains("."))
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count], formatDot);
+                    }
+                    else
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count]);
+                    }
+                    result += monthsProfitDouble[count];
                     count++;
                 }
                 return result;
@@ -178,8 +200,14 @@ namespace Конвертер_валют
                 else if (type == TypeOfUserInput.money)
                 {
                     string moneyInput;
+                    float number;
                     moneyInput = Console.ReadLine();
-                    if (int.TryParse(moneyInput, out int number))
+                    bool isLetter = moneyInput.All(Char.IsLetter);
+                    if (Single.TryParse(moneyInput, out number))
+                    {
+                        returnInput = moneyInput;
+                    }
+                    else if (isLetter == false && moneyInput.Contains("."))
                     {
                         returnInput = moneyInput;
                     }
