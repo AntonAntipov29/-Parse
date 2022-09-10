@@ -68,6 +68,7 @@ namespace Конвертер_валют
                 Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
                 currency = GetUserInput(TypeOfUserInput.currency);
                 Console.WriteLine($"Введена валюта - {currency}. ");
+                Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
                 Console.ReadKey();
                 yearProfit = YearProfit();
                 Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
