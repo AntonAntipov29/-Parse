@@ -49,14 +49,14 @@ namespace Конвертер_валют
 
             void TaxCalculator()
             {
-                float yearProfit;
+                double yearProfit;
                 string currency;
-                float profit;
+                double profit;
                 float singleTaxRate = 0.05f;
                 float socialContRate = 0.22f;
                 const float MIN_SALARY = 6500;
-                float singleTax;
-                float socialCont;
+                double singleTax;
+                double socialCont;
                 float dollarRate = 39.77f;
                 float euroRate = 39.4f;
                 float hryvniaRate = 1f;
