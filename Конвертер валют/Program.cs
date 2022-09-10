@@ -60,10 +60,9 @@ namespace Конвертер_валют
                 float dollarRate = 39.77f;
                 float euroRate = 39.4f;
                 float hryvniaRate = 1f;
-                string dollarIndex = "USD";
-                string euroIndex = "EUR";
-                string hryvniaIndex = "UAH";
                 float currencyVariant = 0;
+                string formatMoney = "{0:N}";
+
 
                 
                 Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
@@ -97,10 +96,15 @@ namespace Конвертер_валют
 
                 //output results in console
 
-                Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH");
-                Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
-                Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+
+                Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
+                Console.WriteLine(" гривень");
+                Console.Write("Всього єдиного податку (5%) - " + formatMoney, singleTax);
+                Console.WriteLine(" гривень");
+                Console.Write("Всього єдиного соцiального внеску (22%) - " + formatMoney, socialCont);
+                Console.WriteLine(" гривень");
+                Console.Write("Прибуток пiсля вирахування податкiв - " + formatMoney, profit);
+                Console.WriteLine(" гривень");
 
                 FinalAnswer();
             }
