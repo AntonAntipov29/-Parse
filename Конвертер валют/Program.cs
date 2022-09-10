@@ -166,7 +166,7 @@ namespace Конвертер_валют
                 }
                 else if (finalAnswer == CalcAgainIndex)
                 {
-
+                    Console.Clear();
                     TaxCalculator();
                 }
                 else
@@ -233,6 +233,7 @@ namespace Конвертер_валют
                     {
                         Console.Clear();
                         Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                        Console.Clear();
                         TaxCalculator();
                     }
                     else
