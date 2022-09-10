@@ -70,7 +70,9 @@ namespace Конвертер_валют
                 Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
                 Console.ReadKey();
                 yearProfit = YearProfit();
-                Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
+                Console.Write("Ви ввели " + formatMoney,yearProfit);
+                Console.Write(" "+currency);
+                Console.WriteLine(". Для розрахунку податкiв натиснiть ENTER");
                 Console.ReadKey();
                 Console.Clear();
 
