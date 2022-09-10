@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Конвертер_валют
 {
     internal class Program
@@ -20,8 +21,7 @@ namespace Конвертер_валют
 
         static void Main(string[] args)
         {
-              
-            AgeControl();
+        AgeControl();
 
             void AgeControl()
             {
@@ -64,7 +64,6 @@ namespace Конвертер_валют
                 string formatMoney = "{0:N}";
 
 
-                
                 Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
                 currency = GetUserInput(TypeOfUserInput.currency);
                 Console.WriteLine($"Введена валюта - {currency}. ");
@@ -154,7 +153,7 @@ namespace Конвертер_валют
 
             void FinalAnswer()
             {
-                string finalAnswer = ""; 
+                string finalAnswer = "";
 
                 Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
                 finalAnswer = GetUserInput(TypeOfUserInput.command);
@@ -200,6 +199,10 @@ namespace Конвертер_валют
                 }
                 else if (type == TypeOfUserInput.money)
                 {
+
+
+
+
                     string moneyInput;
                     float number;
                     moneyInput = Console.ReadLine();
