@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Конвертер_валют
 {
     internal class Program
@@ -20,8 +21,7 @@ namespace Конвертер_валют
 
         static void Main(string[] args)
         {
-              
-            AgeControl();
+        AgeControl();
 
             void AgeControl()
             {
@@ -49,29 +49,30 @@ namespace Конвертер_валют
 
             void TaxCalculator()
             {
-                float yearProfit;
+                double yearProfit;
                 string currency;
-                float profit;
+                double profit;
                 float singleTaxRate = 0.05f;
                 float socialContRate = 0.22f;
                 const float MIN_SALARY = 6500;
-                float singleTax;
-                float socialCont;
+                double singleTax;
+                double socialCont;
                 float dollarRate = 39.77f;
                 float euroRate = 39.4f;
                 float hryvniaRate = 1f;
-                string dollarIndex = "USD";
-                string euroIndex = "EUR";
-                string hryvniaIndex = "UAH";
                 float currencyVariant = 0;
+                string formatMoney = "{0:N}";
 
-                
+
                 Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
                 currency = GetUserInput(TypeOfUserInput.currency);
                 Console.WriteLine($"Введена валюта - {currency}. ");
+                Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
                 Console.ReadKey();
                 yearProfit = YearProfit();
-                Console.WriteLine($"Ви ввели {yearProfit} {currency}. Для розрахунку податкiв натиснiть ENTER");
+                Console.Write("Ви ввели " + formatMoney,yearProfit);
+                Console.Write(" "+currency);
+                Console.WriteLine(". Для розрахунку податкiв натиснiть ENTER");
                 Console.ReadKey();
                 Console.Clear();
 
@@ -97,29 +98,56 @@ namespace Конвертер_валют
 
                 //output results in console
 
-                Console.WriteLine($"Дохiд до вирахування податкiв - {yearProfit} UAH");
-                Console.WriteLine($"Всього єдиного податку (5%) - {singleTax} UAH");
-                Console.WriteLine($"Всього єдиного соцiального внеску (22%) - {socialCont} UAH");
-                Console.WriteLine($"Прибуток пiсля вирахування податкiв - {profit} UAH");
+
+                Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
+                Console.WriteLine(" гривень");
+                Console.Write("Всього єдиного податку (5%) - " + formatMoney, singleTax);
+                Console.WriteLine(" гривень");
+                Console.Write("Всього єдиного соцiального внеску (22%) - " + formatMoney, socialCont);
+                Console.WriteLine(" гривень");
+                Console.Write("Прибуток пiсля вирахування податкiв - " + formatMoney, profit);
+                Console.WriteLine(" гривень");
 
                 FinalAnswer();
             }
 
-            int YearProfit()
+            double YearProfit()
             {
                 string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
-                int[] monthsProfit = new int[12];
+                string[] monthsProfit = new string[12];
+                double[] monthsProfitDouble = new double[12];
                 int count = 0;
-                int result = 0;
-                int returnInt;
+                double result = 0;
+
+
+                NumberFormatInfo formatComa = new NumberFormatInfo()
+                {
+                    NumberDecimalSeparator = ",",
+                };
+                NumberFormatInfo formatDot = new NumberFormatInfo()
+                {
+                    NumberDecimalSeparator = ".",
+                };
 
                 while (count < months.Length)
                 {
                     Console.Clear();
                     Console.WriteLine("Введiть дохiд за " + months[count]);
-                    returnInt = Convert.ToInt32(GetUserInput(TypeOfUserInput.money));
-                    monthsProfit[count] = returnInt;
-                    result += monthsProfit[count];
+                    monthsProfit[count] = GetUserInput(TypeOfUserInput.money);
+
+                    if (monthsProfit[count].Contains(","))
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count], formatComa);
+                    }
+                    else if (monthsProfit[count].Contains("."))
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count], formatDot);
+                    }
+                    else
+                    {
+                        monthsProfitDouble[count] = Double.Parse(monthsProfit[count]);
+                    }
+                    result += monthsProfitDouble[count];
                     count++;
                 }
                 return result;
@@ -127,7 +155,7 @@ namespace Конвертер_валют
 
             void FinalAnswer()
             {
-                string finalAnswer = ""; 
+                string finalAnswer = "";
 
                 Console.WriteLine("Щоб закрити програму напишiть Exit, щоб рахувати знову напишiть Calculate again.");
                 finalAnswer = GetUserInput(TypeOfUserInput.command);
@@ -138,7 +166,7 @@ namespace Конвертер_валют
                 }
                 else if (finalAnswer == CalcAgainIndex)
                 {
-
+                    Console.Clear();
                     TaxCalculator();
                 }
                 else
@@ -173,9 +201,19 @@ namespace Конвертер_валют
                 }
                 else if (type == TypeOfUserInput.money)
                 {
+
+
+
+
                     string moneyInput;
+                    float number;
                     moneyInput = Console.ReadLine();
-                    if (int.TryParse(moneyInput, out int number))
+                    bool isLetter = moneyInput.All(Char.IsLetter);
+                    if (Single.TryParse(moneyInput, out number))
+                    {
+                        returnInput = moneyInput;
+                    }
+                    else if (isLetter == false && moneyInput.Contains("."))
                     {
                         returnInput = moneyInput;
                     }
@@ -195,6 +233,7 @@ namespace Конвертер_валют
                     {
                         Console.Clear();
                         Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                        Console.Clear();
                         TaxCalculator();
                     }
                     else
