@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Конвертер_валют
+namespace Calculator_program
 {
     internal class AgeCalculator
     {
-        public void AgeCalculatorBody()
+        public void LaunchAgeCalculator()
         {
             Console.WriteLine("Данна функцiя буде додана згодом, очiкуйте на оновлення.");
             Console.WriteLine("Щоб повернутись в попередньє меню введiть Return.");
@@ -21,13 +21,14 @@ namespace Конвертер_валют
             else if (answer == TaxCalculator.ReturnIndex)
             {
                 Console.Clear();
-                MainMenu.Main();
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.ShowMenu();
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
-                AgeCalculatorBody();
+                LaunchAgeCalculator();
             }
         }
     }
