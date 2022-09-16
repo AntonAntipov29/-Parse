@@ -144,8 +144,8 @@ namespace Calculator_program
             else if (finalAnswer == CalcAgainIndex)
             {
                 Console.Clear();
-                var reload = new TaxCalculator();
-                reload.GettingInput();
+                TaxCalculator reload = new TaxCalculator();
+                reload.Main();
             }
             else if (finalAnswer == ReturnIndex)
             {
