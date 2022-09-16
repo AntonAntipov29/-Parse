@@ -95,8 +95,8 @@ namespace Calculator_program
                     }
                     else
                     {
-                        Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
-                        
+                        Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");                       
+                        Console.ReadKey();
                         Console.Clear();
                         Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
                         GetUserInput(TypeOfUserInput.currency);
