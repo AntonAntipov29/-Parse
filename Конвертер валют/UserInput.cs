@@ -4,126 +4,129 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Конвертер_валют
+namespace Calculator_program
 {
-    internal class UserInput
+    public class UserInput
     {
-        public static string GetUserInput(Enum.TypeOfUserInput type)
+            string returnInput;
+            string currentInput;
+
+       //For future
+       /*    public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
+       // {
+       } */
+
+        public string GetUserInput(TypeOfUserInput type)
         {
-            string returnInput = "";
+           
+            currentInput = Console.ReadLine();
 
-            if (type == Enum.TypeOfUserInput.year)
+            if (type == TypeOfUserInput.year)
             {
-                string yearOfBirth;
-                yearOfBirth = Console.ReadLine();
-                if (int.TryParse(yearOfBirth, out int number))
+                if (int.TryParse(currentInput, out int number))
                 {
-                    returnInput = yearOfBirth;
+                    returnInput = currentInput;
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом!");
-                    Console.ReadKey();
-                    Console.Clear();
-                    MainMenu.Main();
+                Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом!");
+                
+                GetUserInput(TypeOfUserInput.year);
 
                 }
             }
-            else if (type == Enum.TypeOfUserInput.number)
+            else if (type == TypeOfUserInput.number)
             {
-                string menuVariant;
-                menuVariant = Console.ReadLine();
-                if (int.TryParse(menuVariant, out int number))
+               
+                if (int.TryParse(currentInput, out int number))
                 {
-                    returnInput = menuVariant;
+                    returnInput = currentInput;
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Ввiд неправильний! Будь ласка введiть число!");
-                    Console.ReadKey();
-                    Console.Clear();
-                    MainMenu.Main();
-
                 }
             }
-            else if (type == Enum.TypeOfUserInput.money)
+            else if (type == TypeOfUserInput.money)
             {
 
-                string moneyInput;
-                float number;
-                moneyInput = Console.ReadLine();
-                bool isLetter = moneyInput.All(Char.IsLetter);
-                if (Single.TryParse(moneyInput, out number))
+                double number;
+                
+                bool isLetter = currentInput.All(Char.IsLetter);
+                if (double.TryParse(currentInput, out number))
                 {
-                    returnInput = moneyInput;
+                    returnInput = currentInput;
                 }
-                else if (isLetter == false && moneyInput.Contains("."))
+                else if (isLetter == false && currentInput.Contains("."))
                 {
-                    returnInput = moneyInput;
+                    returnInput = currentInput;
                 }
                 else
                 {
-                    Console.Clear();
                     Console.WriteLine("Помилка! Будь ласка вводьте числами!");
                     Console.ReadKey();
-                    var reload = new TaxCalculator();
+                    GetUserInput(TypeOfUserInput.money);
                 }
             }
-            else if (type == Enum.TypeOfUserInput.currency)
+            else if (type == TypeOfUserInput.currency)
             {
-                string currencyInput;
-                currencyInput = Console.ReadLine();
-                if (int.TryParse(currencyInput, out int number))
+                if (int.TryParse(currentInput, out int number))
                 {
-                    Console.Clear();
                     Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
+                    Console.ReadKey();
                     Console.Clear();
-                    var reload = new TaxCalculator();
+                    Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                    GetUserInput(TypeOfUserInput.currency);
                 }
                 else
                 {
-                    if (currencyInput == TaxCalculator.hryvniaIndex)
+                    if (currentInput == TaxCalculator.hryvniaIndex)
                     {
-                        returnInput = currencyInput;
+                        returnInput = currentInput;
                     }
-                    else if (currencyInput == TaxCalculator.dollarIndex)
+                    else if (currentInput == TaxCalculator.dollarIndex)
                     {
-                        returnInput = currencyInput;
+                        returnInput = currentInput;
                     }
-                    else if (currencyInput == TaxCalculator.euroIndex)
+                    else if (currentInput == TaxCalculator.euroIndex)
                     {
-                        returnInput = currencyInput;
+                        returnInput = currentInput;
                     }
                     else
                     {
                         Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
-                        Console.ReadKey();
+                        
                         Console.Clear();
-                        var reload = new TaxCalculator();
+                        Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                        GetUserInput(TypeOfUserInput.currency);
+                        
                     }
 
                 }
 
             }
-            else if (type == Enum.TypeOfUserInput.command)
+            else if (type == TypeOfUserInput.command)
             {
-                string commandInput;
-                commandInput = Console.ReadLine();
+              
 
-                if (commandInput == TaxCalculator.CalcAgainIndex)
+                if (currentInput == TaxCalculator.CalcAgainIndex)
                 {
 
-                    returnInput = commandInput;
+                    returnInput = currentInput;
                 }
-                else if (commandInput == TaxCalculator.ExitIndex)
+                else if (currentInput == TaxCalculator.ExitIndex)
                 {
-                    returnInput = commandInput;
+                    returnInput = currentInput;
                 }
-                else if (commandInput == TaxCalculator.ReturnIndex)
+                else if (currentInput == TaxCalculator.ReturnIndex)
                 {
-                    returnInput = commandInput;
+                    returnInput = currentInput;
+                }
+                else
+                {
+                    Console.WriteLine("Помилка! Будь ласка вводьте команду!");
+                    GetUserInput(TypeOfUserInput.command);
                 }
 
             }
