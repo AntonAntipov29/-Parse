@@ -29,10 +29,8 @@ namespace Calculator_program
                 }
                 else
                 {
-                    Console.Clear();
-                Console.WriteLine("Ввiд неправильний! Будь ласка введiть рiк числом!");
-                
-                GetUserInput(TypeOfUserInput.year);
+                    ShowWarning();
+                    GetUserInput(TypeOfUserInput.year);
 
                 }
             }
@@ -64,8 +62,7 @@ namespace Calculator_program
                 }
                 else
                 {
-                    Console.WriteLine("Помилка! Будь ласка вводьте числами!");
-                    Console.ReadKey();
+                    ShowWarning();
                     GetUserInput(TypeOfUserInput.money);
                 }
             }
@@ -73,10 +70,7 @@ namespace Calculator_program
             {
                 if (int.TryParse(currentInput, out int number))
                 {
-                    Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                    ShowWarning();
                     GetUserInput(TypeOfUserInput.currency);
                 }
                 else
@@ -95,10 +89,7 @@ namespace Calculator_program
                     }
                     else
                     {
-                        Console.WriteLine("Неправильний ввiд! Використовуйте UAH, USD або EUR. Натиснiть будь-яку кнопку, щоб продовжити.");                       
-                        Console.ReadKey();
-                        Console.Clear();
-                        Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+                        ShowWarning();
                         GetUserInput(TypeOfUserInput.currency);
                         
                     }
@@ -125,12 +116,17 @@ namespace Calculator_program
                 }
                 else
                 {
-                    Console.WriteLine("Помилка! Будь ласка вводьте команду!");
+                    ShowWarning();
                     GetUserInput(TypeOfUserInput.command);
                 }
 
             }
             return checkedInput;
+        }
+
+        private void ShowWarning()
+        {
+            Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
         }
     }
 }
