@@ -75,15 +75,7 @@ namespace Calculator_program
                 }
                 else
                 {
-                    if (currentInput == TaxCalculator.hryvniaIndex)
-                    {
-                        returnInput = currentInput;
-                    }
-                    else if (currentInput == TaxCalculator.dollarIndex)
-                    {
-                        returnInput = currentInput;
-                    }
-                    else if (currentInput == TaxCalculator.euroIndex)
+                    if (currentInput == TaxCalculator.hryvniaIndex || currentInput == TaxCalculator.dollarIndex || currentInput == TaxCalculator.euroIndex)
                     {
                         checkedInput = currentInput;
                     }
@@ -101,17 +93,9 @@ namespace Calculator_program
             {
               
 
-                if (currentInput == TaxCalculator.CalcAgainIndex)
+                if (currentInput == TaxCalculator.calcAgainIndex || currentInput == TaxCalculator.exitIndex || currentInput == TaxCalculator.returnIndex)
                 {
 
-                    returnInput = currentInput;
-                }
-                else if (currentInput == TaxCalculator.ExitIndex)
-                {
-                    returnInput = currentInput;
-                }
-                else if (currentInput == TaxCalculator.ReturnIndex)
-                {
                     checkedInput = currentInput;
                 }
                 else
