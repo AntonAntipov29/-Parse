@@ -150,7 +150,7 @@ namespace Calculator_program
             else if (finalAnswer == ReturnIndex)
             {
                 Console.Clear();
-                MainMenu mainMenu = new MainMenu();
+                ShowMainMenu mainMenu = new ShowMainMenu();
                 mainMenu.ShowMenu();
             }
             else

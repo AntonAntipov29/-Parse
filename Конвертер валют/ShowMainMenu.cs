@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Calculator_program
 {
 
-    public class MainMenu
+    public class ShowMainMenu
     {
 
         public void ShowMenu()
@@ -39,7 +39,7 @@ namespace Calculator_program
             {
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator();
-                taxCalculator.Main();
+                taxCalculator.Show();
             }
             else
             {

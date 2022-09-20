@@ -40,7 +40,7 @@ namespace Calculator_program
 
             Console.ReadKey();
             Console.Clear();
-            MainMenu mainMenu = new MainMenu();
+            ShowMainMenu mainMenu = new ShowMainMenu();
             mainMenu.ShowMenu();
 
         }

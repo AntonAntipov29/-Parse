@@ -5,6 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator program", "Конвертер валют\Calculator program.csproj", "{D5583A8A-0AE4-4444-A8B4-2F07E8ABBF20}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{6AC68D55-B556-434B-BACD-BAEF4AF9A78C}"
+	ProjectSection(SolutionItems) = preProject
+		Конвертер валют\ShowMainMenu.cs = Конвертер валют\ShowMainMenu.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
