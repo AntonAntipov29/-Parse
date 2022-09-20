@@ -11,9 +11,9 @@ namespace Calculator_program
     class TaxCalculator
     {
          
-        public const string ExitIndex = "Exit";
-        public const string CalcAgainIndex = "Calculate again";
-        public const string ReturnIndex = "Return";
+        public const string exitIndex = "Exit";
+        public const string calcAgainIndex = "Calculate again";
+        public const string returnIndex = "Return";
         public const string dollarIndex = "USD";
         public const string euroIndex = "EUR";
         public const string hryvniaIndex = "UAH";
@@ -137,17 +137,17 @@ namespace Calculator_program
             Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
             UserInput userInputCommand = new UserInput();
             finalAnswer = userInputCommand.GetUserInput(TypeOfUserInput.command);
-            if (finalAnswer == ExitIndex)
+            if (finalAnswer == exitIndex)
             {
                 Environment.Exit(0);
             }
-            else if (finalAnswer == CalcAgainIndex)
+            else if (finalAnswer == calcAgainIndex)
             {
                 Console.Clear();
                 TaxCalculator reload = new TaxCalculator();
                 reload.Main();
             }
-            else if (finalAnswer == ReturnIndex)
+            else if (finalAnswer == returnIndex)
             {
                 Console.Clear();
                 ShowMainMenu mainMenu = new ShowMainMenu();

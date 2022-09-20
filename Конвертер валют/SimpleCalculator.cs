@@ -14,11 +14,11 @@ namespace Calculator_program
             Console.WriteLine("Щоб повернутись в попередньє меню введiть Return.");
             Console.WriteLine("Щоб закрити додаток введiть Exit.");
             string answer = Console.ReadLine();
-            if (answer == TaxCalculator.ExitIndex)
+            if (answer == TaxCalculator.exitIndex)
             {
                 Environment.Exit(0);
             }
-            else if (answer == TaxCalculator.ReturnIndex)
+            else if (answer == TaxCalculator.returnIndex)
             {
                 Console.Clear();
                 ShowMainMenu mainMenu = new ShowMainMenu();
