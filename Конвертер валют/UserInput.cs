@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Calculator_program
@@ -11,10 +12,11 @@ namespace Calculator_program
            public string checkedInput;
            private string currentInput;
 
-       //For future
-       /*    public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
-       // {
-       } */
+       
+        //public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
+        //{
+            
+        //} 
 
         public string GetUserInput(TypeOfUserInput type)
         {
