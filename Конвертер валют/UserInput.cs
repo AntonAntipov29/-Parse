@@ -8,8 +8,8 @@ namespace Calculator_program
 {
     public class UserInput
     {
-            string returnInput;
-            string currentInput;
+           public string checkedInput;
+           private string currentInput;
 
        //For future
        /*    public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
@@ -25,7 +25,7 @@ namespace Calculator_program
             {
                 if (int.TryParse(currentInput, out int number))
                 {
-                    returnInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -41,7 +41,7 @@ namespace Calculator_program
                
                 if (int.TryParse(currentInput, out int number))
                 {
-                    returnInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -56,11 +56,11 @@ namespace Calculator_program
                 bool isLetter = currentInput.All(Char.IsLetter);
                 if (double.TryParse(currentInput, out number))
                 {
-                    returnInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else if (isLetter == false && currentInput.Contains("."))
                 {
-                    returnInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace Calculator_program
                     }
                     else if (currentInput == TaxCalculator.euroIndex)
                     {
-                        returnInput = currentInput;
+                        checkedInput = currentInput;
                     }
                     else
                     {
@@ -121,7 +121,7 @@ namespace Calculator_program
                 }
                 else if (currentInput == TaxCalculator.ReturnIndex)
                 {
-                    returnInput = currentInput;
+                    checkedInput = currentInput;
                 }
                 else
                 {
@@ -130,7 +130,7 @@ namespace Calculator_program
                 }
 
             }
-            return returnInput;
+            return checkedInput;
         }
     }
 }
