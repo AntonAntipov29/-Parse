@@ -10,11 +10,6 @@ namespace Calculator_program
     {
         static void Main()
         { 
-            Greeting();
-
-            void Greeting()
-            {
-
             
             Console.WriteLine("Вiтеємо Вас в унiверсальному калькуляторi!");
             Console.WriteLine("Натиснiть будь-яку кнопку, щоб продовжити.");
@@ -22,7 +17,7 @@ namespace Calculator_program
             Console.Clear();
             AgeControl ageControl = new AgeControl();
             ageControl.Realization();
-            }
+            
 
         }
     }
