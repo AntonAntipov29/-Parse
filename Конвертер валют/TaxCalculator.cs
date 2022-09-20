@@ -32,6 +32,8 @@ namespace Calculator_program
         public string formatMoney = "{0:N}";
         public string finalAnswer;
 
+        UserInput userInput = new UserInput();
+
         public void Show()
         {
             
@@ -45,7 +47,6 @@ namespace Calculator_program
         {
 
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
-            UserInput userInput = new UserInput();
             currency = userInput.GetUserInput(TypeOfUserInput.currency);
             Console.WriteLine($"Введена валюта - {currency}.");
             Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
@@ -74,8 +75,7 @@ namespace Calculator_program
             {
                 Console.Clear();
                 Console.WriteLine("Введiть дохiд за " + months[count]);
-                UserInput userInputMoney = new UserInput();
-                monthsProfit[count] = userInputMoney.GetUserInput(TypeOfUserInput.money);
+                monthsProfit[count] = userInput.GetUserInput(TypeOfUserInput.money);
 
                 if (monthsProfit[count].Contains(","))
                 {
@@ -135,8 +135,7 @@ namespace Calculator_program
             Console.WriteLine(" ");
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
             Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
-            UserInput userInputCommand = new UserInput();
-            finalAnswer = userInputCommand.GetUserInput(TypeOfUserInput.command);
+            finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
             if (finalAnswer == exitIndex)
             {
                 Environment.Exit(0);
@@ -158,7 +157,7 @@ namespace Calculator_program
                 Console.Clear();
                 Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
                 ShowResult();
-                userInputCommand.GetUserInput(TypeOfUserInput.command);
+                userInput.GetUserInput(TypeOfUserInput.command);
             }
         }  
     }
