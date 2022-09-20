@@ -71,7 +71,7 @@ namespace Calculator_program
                 NumberDecimalSeparator = ".",
             };
 
-            while (count < months.Length)
+            for (count = 0; count < months.Length; count++)
             {
                 Console.Clear();
                 Console.WriteLine("Введiть дохiд за " + months[count]);
@@ -90,8 +90,8 @@ namespace Calculator_program
                     monthsProfitDouble[count] = Double.Parse(monthsProfit[count]);
                 }
                 result += monthsProfitDouble[count];
-                count++;
             }
+
             
             if (currency == hryvniaIndex)
             {
