@@ -32,7 +32,7 @@ namespace Calculator_program
         public string formatMoney = "{0:N}";
         public string finalAnswer;
 
-        public void Main()
+        public void Show()
         {
             
            GettingInput();
