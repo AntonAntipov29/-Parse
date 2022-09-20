@@ -143,8 +143,8 @@ namespace Calculator_program
             else if (finalAnswer == calcAgainIndex)
             {
                 Console.Clear();
-                TaxCalculator reload = new TaxCalculator();
-                reload.Main();
+                TaxCalculator taxCalculator = new TaxCalculator();
+                taxCalculator.Show();
             }
             else if (finalAnswer == returnIndex)
             {
