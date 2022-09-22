@@ -8,14 +8,8 @@ using Calculator_program;
 namespace Calculator_program
 {
     public class AgeControl
-    {
-
-        public void Realization()
-        {
-            ControlAsk();
-        }
-            
-        void ControlAsk()
+    {  
+        public static bool ControlAsk()
         {
             uint rightYear = 2004;
             uint tooOld = 1922;
@@ -30,19 +24,16 @@ namespace Calculator_program
             if (yearOfBirthInt < rightYear && yearOfBirthInt > tooOld)
             {
                 Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
+                Console.ReadKey();
+                Console.Clear();
+                return true;               
             }
             else
             {
                 Console.WriteLine("Повнолiття не пiдтверджено. Натиснiть будь-яку кнопку, щоб закрити калькулятор.");
                 Console.ReadKey();
-                Environment.Exit(0);
+                return false;
             }
-
-            Console.ReadKey();
-            Console.Clear();
-            ShowMainMenu mainMenu = new ShowMainMenu();
-            mainMenu.ShowMenu();
-
         }
     }
 }
