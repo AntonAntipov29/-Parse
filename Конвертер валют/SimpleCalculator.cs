@@ -30,7 +30,6 @@ namespace Calculator_program
                 Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
                 LaunchSimpleCalculator();
             }
-
         }
     }
 }

@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Calculator_program
 {
-    
+
     class TaxCalculator
     {
-         
         public const string exitIndex = "Exit";
         public const string calcAgainIndex = "Calculate again";
         public const string returnIndex = "Return";
@@ -36,26 +35,21 @@ namespace Calculator_program
 
         public void Show()
         {
-            
-           GettingInput();
-           Calculation();
-           ShowResult();
-           
+            GettingInput();
+            Calculation();
+            ShowResult();
         }
-     
+
         private void GettingInput()
         {
-
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
             currency = userInput.GetUserInput(TypeOfUserInput.currency);
             Console.WriteLine($"Введена валюта - {currency}.");
             Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
-    
         }
 
         void Calculation()
-        { 
-
+        {
             string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
             string[] monthsProfit = new string[12];
             double[] monthsProfitDouble = new double[12];
@@ -92,7 +86,6 @@ namespace Calculator_program
                 result += monthsProfitDouble[count];
             }
 
-            
             if (currency == hryvniaIndex)
             {
                 currencyVariant = hryvniaRate;
@@ -105,24 +98,22 @@ namespace Calculator_program
             {
                 currencyVariant = dollarRate;
             }
-           
+
             yearProfit = result;
             yearProfit = yearProfit * currencyVariant;
             singleTax = yearProfit * singleTaxRate;
             socialCont = MIN_SALARY * socialContRate;
-            profit = yearProfit - singleTax - socialCont;       
-          
+            profit = yearProfit - singleTax - socialCont;
+
             Console.Clear();
             Console.Write("Ви ввели " + formatMoney, result);
             Console.Write(" " + currency);
             Console.WriteLine(". Для розрахунку податкiв натиснiть ENTER");
             Console.ReadKey();
-                    
         }
 
         void ShowResult()
         {
-            
             Console.Clear();
             Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
             Console.WriteLine(" гривень");
@@ -143,8 +134,7 @@ namespace Calculator_program
             else if (finalAnswer == calcAgainIndex)
             {
                 Console.Clear();
-                TaxCalculator taxCalculator = new TaxCalculator();
-                taxCalculator.Show();
+                Show();
             }
             else if (finalAnswer == returnIndex)
             {
@@ -159,8 +149,8 @@ namespace Calculator_program
                 ShowResult();
                 userInput.GetUserInput(TypeOfUserInput.command);
             }
-        }  
+        }
     }
-} 
+}
 
 

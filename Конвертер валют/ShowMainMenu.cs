@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Calculator_program
 {
-
     public class ShowMainMenu
     {
-
         public void ShowMenu()
         {
             string choiseInput;
