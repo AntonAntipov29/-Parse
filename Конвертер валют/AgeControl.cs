@@ -9,7 +9,7 @@ namespace Calculator_program
 {
     public class AgeControl
     {  
-        public static bool ControlAsk()
+        public bool ControlAsk()
         {
             uint rightYear = 2004;
             uint tooOld = 1922;
