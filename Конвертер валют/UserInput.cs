@@ -10,12 +10,11 @@ namespace Calculator_program
     public class UserInput
     {
         public string checkedInput;
-        public string currentInput;
+        private string currentInput;
 
-
-        //public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
+        //public void GetUserInput(bool showWarning = true)
         //{
-
+ 
         //} 
 
         public string GetUserInput(TypeOfUserInput type)
@@ -45,7 +44,6 @@ namespace Calculator_program
             }
             return checkedInput;
         }
-
         private void ShowWarning()
         {
             Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
@@ -70,7 +68,8 @@ namespace Calculator_program
             }
             else
             {
-                Console.Clear();
+                ShowWarning();
+                GetUserInput(TypeOfUserInput.number);
             }
         }
         private void TypeOfUserInputMoney()
