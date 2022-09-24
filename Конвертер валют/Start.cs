@@ -8,13 +8,9 @@ namespace Calculator_program
 {
     public class Start
     {
-
-
         static void Main()
         {
             Greeting();
-            AgeControler();
-            ShowMainMenu();
 
             void Greeting()
             {
@@ -22,19 +18,21 @@ namespace Calculator_program
                 Console.WriteLine("Натиснiть будь-яку кнопку, щоб продовжити.");
                 Console.ReadKey();
                 Console.Clear();
+                AgeControler();
             }
             void AgeControler()
             {
-                bool ageControlchecked;
+                bool isAdult;
                 AgeControl ageControl = new AgeControl();
-                ageControlchecked = AgeControl.ControlAsk();
+                isAdult = ageControl.ControlAsk();
 
-                if (ageControlchecked == false)
+                if (isAdult)
+                {
+                    ShowMainMenu();
+                }    
+                else if (!isAdult)
                 {
                     Environment.Exit(0);
-                }
-                else
-                {
                 }
             }
             void ShowMainMenu()
