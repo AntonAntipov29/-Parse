@@ -16,6 +16,9 @@ namespace Calculator_program
         public const string dollarIndex = "USD";
         public const string euroIndex = "EUR";
         public const string hryvniaIndex = "UAH";
+        public const string firstItem = "1"; 
+        public const string secondItem = "2"; 
+        public const string thirdItem = "3";
         double yearProfit;
         public string currency;
         public double profit;

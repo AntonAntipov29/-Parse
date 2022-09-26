@@ -16,34 +16,33 @@ namespace Calculator_program
             Console.WriteLine("1. Простий калькулятор");
             Console.WriteLine("2. Калькулятор вiку");
             Console.WriteLine("3. Калькулятор податкiв");
+            Console.WriteLine("Щоб вийти введiть Exit");
 
             UserInput userInput = new UserInput();
-            choiseInput = userInput.GetUserInput(TypeOfUserInput.number);
-            choiseInputInt = Convert.ToInt32(choiseInput);
+            choiseInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command, showWarning:true);
 
-            if (choiseInputInt == 1)
+            if (choiseInput == TaxCalculator.firstItem)
             {
                 Console.Clear();
-                var simpleCalculator = new SimpleCalculator();
+                SimpleCalculator simpleCalculator = new SimpleCalculator();
                 simpleCalculator.LaunchSimpleCalculator();
             }
-            else if (choiseInputInt == 2)
+            else if (choiseInput == TaxCalculator.secondItem)
             {
                 Console.Clear();
-                var ageCalculator = new AgeCalculator();
+                AgeCalculator ageCalculator = new AgeCalculator();
                 ageCalculator.LaunchAgeCalculator();
             }
-            else if (choiseInputInt == 3)
+            else if (choiseInput == TaxCalculator.thirdItem)
             {
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator();
                 taxCalculator.Show();
             }
-            else
+            else if (choiseInput == TaxCalculator.exitIndex)
             {
-                Console.Clear();
-                ShowMenu();
-            }
+                Environment.Exit(0);
+            } 
         }
     }
 }
