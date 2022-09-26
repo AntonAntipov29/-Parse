@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Calculator_program
 {
@@ -12,68 +8,78 @@ namespace Calculator_program
         public string checkedInput;
         public string currentInput;
 
-
-        //public string GetUserInput(TypeOfUserInput firstType,TypeOfUserInput secondType)
-        //{
-
-        //} 
-
-        public string GetUserInput(TypeOfUserInput type)
+        public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
-
             currentInput = Console.ReadLine();
+            CheckUserInputWithType(type, showWarning);
 
-            if (type == TypeOfUserInput.year)
-            {
-                TypeOfUserInputYear();
-            }
-            else if (type == TypeOfUserInput.number)
-            {
-                TypeOfUserInputNumber();
-            }
-            else if (type == TypeOfUserInput.money)
-            {
-                TypeOfUserInputMoney();
-            }
-            else if (type == TypeOfUserInput.currency)
-            {
-                TypeOfUserInputCurrency();
-            }
-            else if (type == TypeOfUserInput.command)
-            {
-                TypeOfUserInputCommand();
-            }
             return checkedInput;
         }
 
-        private void ShowWarning()
+        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
         {
-            Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
+            checkedInput = GetUserInput(firstType, false);
+            bool isEmptyInput = string.IsNullOrEmpty(checkedInput);
+
+            if (isEmptyInput)
+            {
+                CheckUserInputWithType(secondType);
+            }
+
+            return checkedInput;
         }
-        private void TypeOfUserInputYear()
+
+        private void CheckUserInputWithType(TypeOfUserInput type, bool showWarning = true)
+        {
+            if (type == TypeOfUserInput.year)
+            {
+                TypeOfUserInputYear(showWarning);
+            }
+            else if (type == TypeOfUserInput.number)
+            {
+                TypeOfUserInputNumber(showWarning);
+            }
+            else if (type == TypeOfUserInput.money)
+            {
+                TypeOfUserInputMoney(showWarning);
+            }
+            else if (type == TypeOfUserInput.currency)
+            {
+                TypeOfUserInputCurrency(showWarning);
+            }
+            else if (type == TypeOfUserInput.command)
+            {
+                TypeOfUserInputCommand(showWarning);
+            }
+        }
+
+        private void TypeOfUserInputYear(bool showWarning)
         {
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
-            else
-            {
+            else if (showWarning) 
+            { 
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.year);
             }
         }
-        private void TypeOfUserInputNumber()
+
+        private void TypeOfUserInputNumber(bool showWarning)
         {
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning)
             {
-                Console.Clear();
+                ShowWarning();
+                GetUserInput(TypeOfUserInput.number);
             }
         }
-        private void TypeOfUserInputMoney()
+
+        private void TypeOfUserInputMoney(bool showWarning)
         {
             double number;
             bool isLetter = currentInput.All(Char.IsLetter);
@@ -85,13 +91,14 @@ namespace Calculator_program
             {
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.money);
             }
         }
-        private void TypeOfUserInputCurrency()
+
+        private void TypeOfUserInputCurrency(bool showWarning)
         {
             if (int.TryParse(currentInput, out int number))
             {
@@ -104,25 +111,30 @@ namespace Calculator_program
                 {
                     checkedInput = currentInput;
                 }
-                else
+                else if (showWarning)
                 {
                     ShowWarning();
                     GetUserInput(TypeOfUserInput.currency);
                 }
-
             }
         }
-        private void TypeOfUserInputCommand()
+
+        private void TypeOfUserInputCommand(bool showWarning)
         {
             if (currentInput == TaxCalculator.calcAgainIndex || currentInput == TaxCalculator.exitIndex || currentInput == TaxCalculator.returnIndex)
             {
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
             }
+        }
+
+        private void ShowWarning()
+        {
+            Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator_program
 {
@@ -11,38 +7,36 @@ namespace Calculator_program
         public void ShowMenu()
         {
             string choiseInput;
-            int choiseInputInt;
             Console.WriteLine("Введiть номер калькулятора, який хочете використовувати:");
             Console.WriteLine("1. Простий калькулятор");
             Console.WriteLine("2. Калькулятор вiку");
             Console.WriteLine("3. Калькулятор податкiв");
 
             UserInput userInput = new UserInput();
-            choiseInput = userInput.GetUserInput(TypeOfUserInput.number);
-            choiseInputInt = Convert.ToInt32(choiseInput);
+            choiseInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
 
-            if (choiseInputInt == 1)
+            if (choiseInput == "1")
             {
                 Console.Clear();
                 var simpleCalculator = new SimpleCalculator();
                 simpleCalculator.LaunchSimpleCalculator();
             }
-            else if (choiseInputInt == 2)
+            else if (choiseInput == "2")
             {
                 Console.Clear();
                 var ageCalculator = new AgeCalculator();
                 ageCalculator.LaunchAgeCalculator();
             }
-            else if (choiseInputInt == 3)
+            else if (choiseInput == "3")
             {
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator();
                 taxCalculator.Show();
             }
-            else
+            else if (choiseInput == "Exit")
             {
                 Console.Clear();
-                ShowMenu();
+                Environment.Exit(0);
             }
         }
     }
