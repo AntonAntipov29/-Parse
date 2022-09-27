@@ -108,10 +108,6 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.number);
             }
-            else
-            {
-                GetUserInput(TypeOfUserInput.number);
-            }
         }
 
         private void TypeOfUserInputMoney(bool showWarning = true)
@@ -144,7 +140,7 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.currency);
             }
-            else if (int.TryParse(currentInput, out int secondNumber) && showWarning)
+            else if (int.TryParse(currentInput, out int secondNumber) && !showWarning)
             {
                 GetUserInput(TypeOfUserInput.currency);
             }
@@ -156,6 +152,7 @@ namespace Calculator_program
                 }
                 else
                 {
+                    ShowWarning();
                     GetUserInput(TypeOfUserInput.currency);
                 }
             }
@@ -171,10 +168,6 @@ namespace Calculator_program
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
-            }
-            else
-            {
-               GetUserInput(TypeOfUserInput.command);
             }
         }
         

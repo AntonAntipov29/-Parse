@@ -18,7 +18,7 @@ namespace Calculator_program
 
             UserInput userInput = new UserInput();
             choiseInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
-
+            
             if (choiseInput == "1")
             {
                 Console.Clear();
