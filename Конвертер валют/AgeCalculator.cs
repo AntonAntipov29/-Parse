@@ -27,7 +27,8 @@ namespace Calculator_program
             else
             {
                 Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
+                UserInput userInputTwo = new UserInput();
+                userInputTwo.ShowWarning();
                 LaunchAgeCalculator();
             }
         }
