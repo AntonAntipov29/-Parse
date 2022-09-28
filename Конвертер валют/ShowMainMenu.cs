@@ -44,8 +44,7 @@ namespace Calculator_program
             else
             {
                 Console.Clear();
-                UserInput userInputTwo = new UserInput();
-                userInputTwo.ShowWarning();
+                userInput.ShowWarning();
                 ShowMenu();
             }
         }
