@@ -139,7 +139,7 @@ namespace Calculator_program
             else if (finalAnswer == returnIndex)
             {
                 Console.Clear();
-                ShowMainMenu mainMenu = new ShowMainMenu();
+                MainMenu mainMenu = new MainMenu();
                 mainMenu.ShowMenu();
             }
             else
