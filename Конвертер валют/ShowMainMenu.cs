@@ -6,42 +6,45 @@ using System.Threading.Tasks;
 
 namespace Calculator_program
 {
-    public class ShowMainMenu
+    public class MainMenu
     {
         public void ShowMenu()
         {
             string choiseInput;
-            int choiseInputInt;
             Console.WriteLine("Введiть номер калькулятора, який хочете використовувати:");
             Console.WriteLine("1. Простий калькулятор");
             Console.WriteLine("2. Калькулятор вiку");
             Console.WriteLine("3. Калькулятор податкiв");
 
             UserInput userInput = new UserInput();
-            choiseInput = userInput.GetUserInput(TypeOfUserInput.number);
-            choiseInputInt = Convert.ToInt32(choiseInput);
-
-            if (choiseInputInt == 1)
+            choiseInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+            
+            if (choiseInput == "1")
             {
                 Console.Clear();
-                var simpleCalculator = new SimpleCalculator();
+                SimpleCalculator simpleCalculator = new SimpleCalculator();
                 simpleCalculator.LaunchSimpleCalculator();
             }
-            else if (choiseInputInt == 2)
+            else if (choiseInput == "2")
             {
                 Console.Clear();
-                var ageCalculator = new AgeCalculator();
+                AgeCalculator ageCalculator = new AgeCalculator();
                 ageCalculator.LaunchAgeCalculator();
             }
-            else if (choiseInputInt == 3)
+            else if (choiseInput == "3")
             {
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator();
                 taxCalculator.Show();
             }
+            else if (choiseInput == TaxCalculator.exitIndex)
+            {
+                Environment.Exit(0);
+            }
             else
             {
                 Console.Clear();
+                userInput.ShowWarning();
                 ShowMenu();
             }
         }

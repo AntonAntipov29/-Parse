@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Calculator_program
 {
@@ -12,89 +13,143 @@ namespace Calculator_program
         public string checkedInput;
         private string currentInput;
 
-        //public void GetUserInput(bool showWarning = true)
-        //{
- 
-        //} 
-
-        public string GetUserInput(TypeOfUserInput type)
+        NumberFormatInfo formatDot = new NumberFormatInfo()
         {
+                NumberDecimalSeparator = ".",
+        };
 
+        public string GetUserInput(bool showWarning = true)
+        {
             currentInput = Console.ReadLine();
 
+            if (currentInput.Length == 0 || currentInput.Contains(" ") && showWarning)
+	        {
+                ShowWarning();  
+                GetUserInput(showWarning);
+	        }
+            else if (currentInput.Length == 0 || currentInput.Contains(" "))
+	        {
+                Console.WriteLine("Ви нiчого не ввели!");
+                GetUserInput(showWarning);
+	        }
+            else
+            {
+                currentInput = checkedInput;
+            }
+ 
+            return checkedInput;
+        } 
+
+        public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
+        {
+            currentInput = Console.ReadLine();
+            CheckUserInputWithType(type, showWarning);
+
+            return checkedInput;
+        }
+
+        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
+        {
+            
+            checkedInput = GetUserInput(firstType, false);
+            bool isWrongType = string.IsNullOrEmpty(checkedInput);
+
+            if (isWrongType)
+            {
+                CheckUserInputWithType(secondType, false);
+            }           
+            
+            return checkedInput;
+        }
+
+        public void CheckUserInputWithType(TypeOfUserInput type, bool showWarning = true)
+        {
             if (type == TypeOfUserInput.year)
             {
-                TypeOfUserInputYear();
+                TypeOfUserInputYear(showWarning);
             }
             else if (type == TypeOfUserInput.number)
             {
-                TypeOfUserInputNumber();
+                TypeOfUserInputNumber(showWarning);
             }
             else if (type == TypeOfUserInput.money)
             {
-                TypeOfUserInputMoney();
+                TypeOfUserInputMoney(showWarning);
             }
             else if (type == TypeOfUserInput.currency)
             {
-                TypeOfUserInputCurrency();
+                TypeOfUserInputCurrency(showWarning);
             }
             else if (type == TypeOfUserInput.command)
             {
-                TypeOfUserInputCommand();
+                TypeOfUserInputCommand(showWarning);
             }
-            return checkedInput;
         }
-        private void ShowWarning()
-        {
-            Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
-        }
-        private void TypeOfUserInputYear()
+
+        private void TypeOfUserInputYear(bool showWarning)
         {
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.year);
             }
+            else 
+	        {
+                GetUserInput(TypeOfUserInput.year);
+	        }
         }
-        private void TypeOfUserInputNumber()
+
+        private void TypeOfUserInputNumber(bool showWarning = true)
         {
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
             }
-            else
+            else if(showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.number);
             }
         }
-        private void TypeOfUserInputMoney()
+
+        private void TypeOfUserInputMoney(bool showWarning = true)
         {
             double number;
-            bool isLetter = currentInput.All(Char.IsLetter);
-            if (double.TryParse(currentInput, out number))
+            bool isNumber = (double.TryParse(currentInput, out number));
+
+            if (isNumber)
             {
                 checkedInput = currentInput;
             }
-            else if (isLetter == false && currentInput.Contains("."))
+            else if (!isNumber && currentInput.Contains("."))
             {
-                checkedInput = currentInput;
+                Convert.ToDouble(currentInput, formatDot);                
+                checkedInput = Convert.ToString(currentInput);
             }
-            else
+            else if (showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.money);
             }
+            else
+            {
+                GetUserInput(TypeOfUserInput.money);
+            }
         }
-        private void TypeOfUserInputCurrency()
+
+        private void TypeOfUserInputCurrency(bool showWarning = true)
         {
-            if (int.TryParse(currentInput, out int number))
+            if (int.TryParse(currentInput, out int number) && showWarning)
             {
                 ShowWarning();
+                GetUserInput(TypeOfUserInput.currency);
+            }
+            else if (int.TryParse(currentInput, out int secondNumber) && !showWarning)
+            {
                 GetUserInput(TypeOfUserInput.currency);
             }
             else
@@ -108,20 +163,25 @@ namespace Calculator_program
                     ShowWarning();
                     GetUserInput(TypeOfUserInput.currency);
                 }
-
             }
         }
-        private void TypeOfUserInputCommand()
+
+        private void TypeOfUserInputCommand(bool showWarning = true)
         {
             if (currentInput == TaxCalculator.calcAgainIndex || currentInput == TaxCalculator.exitIndex || currentInput == TaxCalculator.returnIndex)
             {
                 checkedInput = currentInput;
             }
-            else
+            else if (showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
             }
+        }
+        
+        public void ShowWarning()
+        {
+            Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
         }
     }
 }

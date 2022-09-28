@@ -21,13 +21,14 @@ namespace Calculator_program
             else if (answer == TaxCalculator.returnIndex)
             {
                 Console.Clear();
-                ShowMainMenu mainMenu = new ShowMainMenu();
+                MainMenu mainMenu = new MainMenu();
                 mainMenu.ShowMenu();
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit або Calculate again.");
+                UserInput userInputTwo = new UserInput();
+                userInputTwo.ShowWarning();
                 LaunchSimpleCalculator();
             }
         }

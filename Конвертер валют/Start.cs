@@ -37,7 +37,7 @@ namespace Calculator_program
             }
             void ShowMainMenu()
             {
-                ShowMainMenu showMainMenu = new ShowMainMenu();
+                MainMenu showMainMenu = new MainMenu();
                 showMainMenu.ShowMenu();
             }
         }

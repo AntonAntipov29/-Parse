@@ -16,20 +16,20 @@ namespace Calculator_program
         public const string dollarIndex = "USD";
         public const string euroIndex = "EUR";
         public const string hryvniaIndex = "UAH";
-        double yearProfit;
-        public string currency;
-        public double profit;
-        public double singleTaxRate = 0.05;
-        public double socialContRate = 0.22;
-        public const double MIN_SALARY = 6500;
-        public double singleTax;
-        public double socialCont;
-        public double dollarRate = 39.77;
-        public double euroRate = 39.4;
-        public double hryvniaRate = 1;
-        public double currencyVariant = 0;
-        public string formatMoney = "{0:N}";
-        public string finalAnswer;
+        private double yearProfit;
+        private string currency;
+        private double profit;
+        private double singleTaxRate = 0.05;
+        private double socialContRate = 0.22;
+        private const double MIN_SALARY = 6500;
+        private double singleTax;
+        private double socialCont;
+        private double dollarRate = 39.77;
+        private double euroRate = 39.4;
+        private double hryvniaRate = 1;
+        private double currencyVariant = 0;
+        private string formatMoney = "{0:N}";
+        private string finalAnswer;
 
         UserInput userInput = new UserInput();
 
@@ -139,7 +139,7 @@ namespace Calculator_program
             else if (finalAnswer == returnIndex)
             {
                 Console.Clear();
-                ShowMainMenu mainMenu = new ShowMainMenu();
+                MainMenu mainMenu = new MainMenu();
                 mainMenu.ShowMenu();
             }
             else
