@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Calculator_program
 {
@@ -11,6 +12,11 @@ namespace Calculator_program
     {
         public string checkedInput;
         private string currentInput;
+
+        NumberFormatInfo formatDot = new NumberFormatInfo()
+        {
+                NumberDecimalSeparator = ".",
+        };
 
         public string GetUserInput(bool showWarning = true)
         {
@@ -113,14 +119,16 @@ namespace Calculator_program
         private void TypeOfUserInputMoney(bool showWarning = true)
         {
             double number;
-            bool isLetter = currentInput.All(Char.IsLetter);
-            if (double.TryParse(currentInput, out number))
+            bool isNumber = (double.TryParse(currentInput, out number));
+
+            if (isNumber)
             {
                 checkedInput = currentInput;
             }
-            else if (isLetter == false && currentInput.Contains("."))
+            else if (!isNumber && currentInput.Contains("."))
             {
-                checkedInput = currentInput;
+                Convert.ToDouble(currentInput, formatDot);                
+                checkedInput = Convert.ToString(currentInput);
             }
             else if (showWarning)
             {
