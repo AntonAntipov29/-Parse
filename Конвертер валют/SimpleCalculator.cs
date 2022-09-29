@@ -115,21 +115,21 @@ namespace Calculator_program
         
         private void ShowResult()
         {
-             if (operation == additionIndex || operation == substractionIndex || operation == multiplicationIndex || operation == divisionIndex)
+            if (operation == interestIndex)
 	        {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);             
-	        }         
-            else if (operation == interestIndex)
-            {
                 Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
-                Console.WriteLine(" %");
+                Console.WriteLine(" %");           
+	        }         
+            else 
+            {
+                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);     
             }    
                       
-            Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
             Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
             finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
+
             if (finalAnswer == TaxCalculator.exitIndex)
             {
                 Environment.Exit(0);
