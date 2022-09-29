@@ -115,22 +115,10 @@ namespace Calculator_program
         
         private void ShowResult()
         {
-             if (operation == additionIndex)
+             if (operation == additionIndex || operation == substractionIndex || operation == multiplicationIndex || operation == divisionIndex)
 	        {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " + " + secondNumberDouble + " = " + formatMoney, result);             
-	        }
-            else if (operation == substractionIndex)
-            {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " - " + secondNumberDouble + " = " + formatMoney, result);
-            }
-            else if (operation == multiplicationIndex)
-            {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " * " + secondNumberDouble + " = " + formatMoney, result);
-            }
-            else if (operation == divisionIndex)
-            {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " / " + secondNumberDouble + " = " + formatMoney, result);
-            }
+                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);             
+	        }         
             else if (operation == interestIndex)
             {
                 Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
