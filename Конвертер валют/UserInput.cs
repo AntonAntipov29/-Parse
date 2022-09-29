@@ -84,6 +84,11 @@ namespace Calculator_program
             {
                 TypeOfUserInputCommand(showWarning);
             }
+            else if (type == TypeOfUserInput.operation)
+            {
+                TypeOfUserInputOperation(showWarning);
+            }
+
         }
 
         private void TypeOfUserInputYear(bool showWarning)
@@ -179,6 +184,19 @@ namespace Calculator_program
             }
         }
         
+        private void TypeOfUserInputOperation(bool showWarning = true)
+        {
+            if (currentInput == SimpleCalculator.additionIndex || currentInput == SimpleCalculator.substractionIndex || currentInput == SimpleCalculator.multiplicationIndex || currentInput == SimpleCalculator.divisionIndex || currentInput == SimpleCalculator.interestIndex)
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning)
+            {
+                ShowWarning();
+                GetUserInput(TypeOfUserInput.operation);
+            }
+        }
+
         public void ShowWarning()
         {
             Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
