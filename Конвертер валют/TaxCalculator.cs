@@ -69,7 +69,7 @@ namespace Calculator_program
             {
                 Console.Clear();
                 Console.WriteLine("Введiть дохiд за " + months[count]);
-                monthsProfit[count] = userInput.GetUserInput(TypeOfUserInput.money);
+                monthsProfit[count] = userInput.GetUserInput(TypeOfUserInput.number);
 
                 if (monthsProfit[count].Contains(","))
                 {

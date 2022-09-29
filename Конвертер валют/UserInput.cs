@@ -68,13 +68,13 @@ namespace Calculator_program
             {
                 TypeOfUserInputYear(showWarning);
             }
+            else if (type == TypeOfUserInput.menuItem)
+            {
+                TypeOfUserInputMenuItem(showWarning);
+            }
             else if (type == TypeOfUserInput.number)
             {
                 TypeOfUserInputNumber(showWarning);
-            }
-            else if (type == TypeOfUserInput.money)
-            {
-                TypeOfUserInputMoney(showWarning);
             }
             else if (type == TypeOfUserInput.currency)
             {
@@ -103,7 +103,7 @@ namespace Calculator_program
 	        }
         }
 
-        private void TypeOfUserInputNumber(bool showWarning = true)
+        private void TypeOfUserInputMenuItem(bool showWarning = true)
         {
             if (int.TryParse(currentInput, out int number))
             {
@@ -112,11 +112,11 @@ namespace Calculator_program
             else if(showWarning)
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.number);
+                GetUserInput(TypeOfUserInput.menuItem);
             }
         }
 
-        private void TypeOfUserInputMoney(bool showWarning = true)
+        private void TypeOfUserInputNumber(bool showWarning = true)
         {
             double number;
             bool isNumber = (double.TryParse(currentInput, out number));
@@ -133,11 +133,11 @@ namespace Calculator_program
             else if (showWarning)
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.money);
+                GetUserInput(TypeOfUserInput.number);
             }
             else
             {
-                GetUserInput(TypeOfUserInput.money);
+                GetUserInput(TypeOfUserInput.number);
             }
         }
 
