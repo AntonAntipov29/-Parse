@@ -68,13 +68,13 @@ namespace Calculator_program
             {
                 TypeOfUserInputYear(showWarning);
             }
+            else if (type == TypeOfUserInput.menuItem)
+            {
+                TypeOfUserInputMenuItem(showWarning);
+            }
             else if (type == TypeOfUserInput.number)
             {
                 TypeOfUserInputNumber(showWarning);
-            }
-            else if (type == TypeOfUserInput.money)
-            {
-                TypeOfUserInputMoney(showWarning);
             }
             else if (type == TypeOfUserInput.currency)
             {
@@ -84,6 +84,11 @@ namespace Calculator_program
             {
                 TypeOfUserInputCommand(showWarning);
             }
+            else if (type == TypeOfUserInput.operation)
+            {
+                TypeOfUserInputOperation(showWarning);
+            }
+
         }
 
         private void TypeOfUserInputYear(bool showWarning)
@@ -103,7 +108,7 @@ namespace Calculator_program
 	        }
         }
 
-        private void TypeOfUserInputNumber(bool showWarning = true)
+        private void TypeOfUserInputMenuItem(bool showWarning = true)
         {
             if (int.TryParse(currentInput, out int number))
             {
@@ -112,11 +117,11 @@ namespace Calculator_program
             else if(showWarning)
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.number);
+                GetUserInput(TypeOfUserInput.menuItem);
             }
         }
 
-        private void TypeOfUserInputMoney(bool showWarning = true)
+        private void TypeOfUserInputNumber(bool showWarning = true)
         {
             double number;
             bool isNumber = (double.TryParse(currentInput, out number));
@@ -133,11 +138,11 @@ namespace Calculator_program
             else if (showWarning)
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.money);
+                GetUserInput(TypeOfUserInput.number);
             }
             else
             {
-                GetUserInput(TypeOfUserInput.money);
+                GetUserInput(TypeOfUserInput.number);
             }
         }
 
@@ -179,6 +184,19 @@ namespace Calculator_program
             }
         }
         
+        private void TypeOfUserInputOperation(bool showWarning = true)
+        {
+            if (currentInput == SimpleCalculator.additionIndex || currentInput == SimpleCalculator.substractionIndex || currentInput == SimpleCalculator.multiplicationIndex || currentInput == SimpleCalculator.divisionIndex || currentInput == SimpleCalculator.interestIndex)
+            {
+                checkedInput = currentInput;
+            }
+            else if (showWarning)
+            {
+                ShowWarning();
+                GetUserInput(TypeOfUserInput.operation);
+            }
+        }
+
         public void ShowWarning()
         {
             Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");

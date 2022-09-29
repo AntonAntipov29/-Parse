@@ -17,13 +17,13 @@ namespace Calculator_program
             Console.WriteLine("3. Калькулятор податкiв");
 
             UserInput userInput = new UserInput();
-            choiseInput = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+            choiseInput = userInput.GetUserInput(TypeOfUserInput.menuItem, TypeOfUserInput.command);
             
             if (choiseInput == "1")
             {
                 Console.Clear();
                 SimpleCalculator simpleCalculator = new SimpleCalculator();
-                simpleCalculator.LaunchSimpleCalculator();
+                simpleCalculator.Show();
             }
             else if (choiseInput == "2")
             {
