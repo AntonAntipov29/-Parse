@@ -3,22 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Calculator_program
 {
     internal class AgeCalculator
     {
-        public void LaunchAgeCalculator()
+        DateTime dayOfBirth;
+        DateTime now = DateTime.Now;
+        private string finalAnswer;
+        private double fullYears;
+        private double daysInYear = 365.24;
+
+        UserInput userInput = new UserInput();
+
+        public void Show()
         {
-            Console.WriteLine("Данна функцiя буде додана згодом, очiкуйте на оновлення.");
-            Console.WriteLine("Щоб повернутись в попередньє меню введiть Return.");
-            Console.WriteLine("Щоб закрити додаток введiть Exit.");
-            string answer = Console.ReadLine();
-            if (answer == TaxCalculator.exitIndex)
+            GettingInput();
+            Calculation();
+            ShowResult();
+        }
+
+        private void GettingInput()
+        {            
+            Console.WriteLine("Ви обрали калькулятор вiку.");
+            Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
+            dayOfBirth = DateTime.Parse(userInput.GetUserInput(TypeOfUserInput.date));
+            Console.Clear();
+            Console.WriteLine($"Ви ввели дату: {dayOfBirth.ToShortDateString()}");
+            Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        private void Calculation()
+        {
+            TimeSpan age = now - dayOfBirth;
+            fullYears =  age.TotalDays / daysInYear;
+        }       
+        
+        private void ShowResult()
+        {    
+            Console.WriteLine("Вам " + Math.Floor(fullYears) + " рокiв");          
+            Console.WriteLine(" ");          
+            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
+            Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
+            finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
+
+            if (finalAnswer == TaxCalculator.exitIndex)
             {
                 Environment.Exit(0);
             }
-            else if (answer == TaxCalculator.returnIndex)
+            else if (finalAnswer == TaxCalculator.calcAgainIndex)
+            {
+                Console.Clear();
+                Show();
+            }
+            else if (finalAnswer == TaxCalculator.returnIndex)
             {
                 Console.Clear();
                 MainMenu mainMenu = new MainMenu();
@@ -27,10 +68,10 @@ namespace Calculator_program
             else
             {
                 Console.Clear();
-                UserInput userInputTwo = new UserInput();
-                userInputTwo.ShowWarning();
-                LaunchAgeCalculator();
+                Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
+                ShowResult();
+                userInput.GetUserInput(TypeOfUserInput.command);
             }
-        }
+        }   
     }
 }
