@@ -48,7 +48,7 @@ namespace Calculator_program
             Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
         }
 
-        void Calculation()
+        private void Calculation()
         {
             string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
             string[] monthsProfit = new string[12];
@@ -112,7 +112,7 @@ namespace Calculator_program
             Console.ReadKey();
         }
 
-        void ShowResult()
+        private void ShowResult()
         {
             Console.Clear();
             Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
