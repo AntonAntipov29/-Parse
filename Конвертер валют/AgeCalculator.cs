@@ -10,7 +10,7 @@ namespace Calculator_program
     internal class AgeCalculator
     {
         DateTime dayOfBirth;
-        DateTime now = DateTime.Now;
+        DateTime timeNow = DateTime.Now;
         private string finalAnswer;
         private double fullYears;
         private double daysInYear = 365.24;
@@ -38,7 +38,7 @@ namespace Calculator_program
 
         private void Calculation()
         {
-            TimeSpan age = now - dayOfBirth;
+            TimeSpan age = timeNow - dayOfBirth;
             fullYears =  age.TotalDays / daysInYear;
         }       
         
