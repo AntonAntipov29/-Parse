@@ -92,7 +92,6 @@ namespace Calculator_program
             {
                 TypeOfUserInputDate(showWarning);
             }
-
         }
 
         private void TypeOfUserInputYear(bool showWarning)

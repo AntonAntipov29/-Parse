@@ -28,7 +28,8 @@ namespace Calculator_program
         {            
             Console.WriteLine("Ви обрали калькулятор вiку.");
             Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
-            dayOfBirth = DateTime.Parse(userInput.GetUserInput(TypeOfUserInput.date));
+            string userInputString = userInput.GetUserInput(TypeOfUserInput.date);
+            dayOfBirth = DateTime.Parse(userInputString);
             Console.Clear();
             Console.WriteLine($"Ви ввели дату: {dayOfBirth.ToShortDateString()}");
             Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
