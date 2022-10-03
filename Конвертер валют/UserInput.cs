@@ -88,7 +88,10 @@ namespace Calculator_program
             {
                 TypeOfUserInputOperation(showWarning);
             }
-
+            else if (type == TypeOfUserInput.date)
+            {
+                TypeOfUserInputDate(showWarning);
+            }
         }
 
         private void TypeOfUserInputYear(bool showWarning)
@@ -124,7 +127,7 @@ namespace Calculator_program
         private void TypeOfUserInputNumber(bool showWarning = true)
         {
             double number;
-            bool isNumber = (double.TryParse(currentInput, out number));
+            bool isNumber = double.TryParse(currentInput, out number);
 
             if (isNumber)
             {
@@ -194,6 +197,25 @@ namespace Calculator_program
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.operation);
+            }
+        }
+
+        private void TypeOfUserInputDate(bool showWarning = true)
+        {
+            bool isDate = DateTime.TryParse(currentInput, out DateTime result);
+
+            if (isDate)
+            {
+                checkedInput = currentInput;
+            }          
+            else if (showWarning) 
+            {
+                ShowWarning();
+                GetUserInput(TypeOfUserInput.date);
+            }
+            else
+            {
+                GetUserInput(TypeOfUserInput.date);
             }
         }
 

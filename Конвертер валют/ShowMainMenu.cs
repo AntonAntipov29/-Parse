@@ -29,7 +29,7 @@ namespace Calculator_program
             {
                 Console.Clear();
                 AgeCalculator ageCalculator = new AgeCalculator();
-                ageCalculator.LaunchAgeCalculator();
+                ageCalculator.Show();
             }
             else if (choiseInput == "3")
             {

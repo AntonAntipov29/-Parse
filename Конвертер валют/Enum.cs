@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Calculator_program
 { 
 
-       public enum  TypeOfUserInput { command, currency, number, year, menuItem, operation};
+       public enum  TypeOfUserInput { command, currency, number, year, menuItem, operation, date};
     
 }
