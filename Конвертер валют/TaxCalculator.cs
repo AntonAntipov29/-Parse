@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 namespace Calculator_program
 {
 
-    class TaxCalculator
+    class TaxCalculator : BaseCalculator
     {
-        public const string exitIndex = "Exit";
-        public const string calcAgainIndex = "Calculate again";
-        public const string returnIndex = "Return";
         public const string dollarIndex = "USD";
         public const string euroIndex = "EUR";
         public const string hryvniaIndex = "UAH";
@@ -29,15 +26,14 @@ namespace Calculator_program
         private double hryvniaRate = 1;
         private double currencyVariant = 0;
         private string formatMoney = "{0:N}";
-        private string finalAnswer;
-
+       
         UserInput userInput = new UserInput();
 
         public void Show()
         {
             GettingInput();
             Calculation();
-            ShowResult();
+            AskFinalAnswer();
         }
 
         private void GettingInput()
@@ -110,10 +106,6 @@ namespace Calculator_program
             Console.Write(" " + currency);
             Console.WriteLine(". Для розрахунку податкiв натиснiть ENTER");
             Console.ReadKey();
-        }
-
-        private void ShowResult()
-        {
             Console.Clear();
             Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
             Console.WriteLine(" гривень");
@@ -124,31 +116,6 @@ namespace Calculator_program
             Console.Write("Прибуток пiсля вирахування податкiв - " + formatMoney, profit);
             Console.WriteLine(" гривень");
             Console.WriteLine(" ");
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
-            Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
-            finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
-            if (finalAnswer == exitIndex)
-            {
-                Environment.Exit(0);
-            }
-            else if (finalAnswer == calcAgainIndex)
-            {
-                Console.Clear();
-                Show();
-            }
-            else if (finalAnswer == returnIndex)
-            {
-                Console.Clear();
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.ShowMenu();
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
-                ShowResult();
-                userInput.GetUserInput(TypeOfUserInput.command);
-            }
         }
     }
 }

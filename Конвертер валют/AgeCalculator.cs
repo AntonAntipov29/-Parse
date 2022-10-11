@@ -7,11 +7,10 @@ using System.Globalization;
 
 namespace Calculator_program
 {
-    internal class AgeCalculator
+    internal class AgeCalculator : BaseCalculator
     {
         DateTime dayOfBirth;
         DateTime timeNow = DateTime.Now;
-        private string finalAnswer;
         private double fullYears;
         private double daysInYear = 365.24;
 
@@ -21,7 +20,7 @@ namespace Calculator_program
         {
             GettingInput();
             Calculation();
-            ShowResult();
+            AskFinalAnswer();
         }
 
         private void GettingInput()
@@ -41,38 +40,8 @@ namespace Calculator_program
         {
             TimeSpan age = timeNow - dayOfBirth;
             fullYears =  age.TotalDays / daysInYear;
-        }       
-        
-        private void ShowResult()
-        {    
             Console.WriteLine("Вам " + Math.Floor(fullYears) + " рокiв");          
-            Console.WriteLine(" ");          
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
-            Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
-            finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
-
-            if (finalAnswer == TaxCalculator.exitIndex)
-            {
-                Environment.Exit(0);
-            }
-            else if (finalAnswer == TaxCalculator.calcAgainIndex)
-            {
-                Console.Clear();
-                Show();
-            }
-            else if (finalAnswer == TaxCalculator.returnIndex)
-            {
-                Console.Clear();
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.ShowMenu();
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
-                ShowResult();
-                userInput.GetUserInput(TypeOfUserInput.command);
-            }
-        }   
+            Console.WriteLine(" ");    
+        }       
     }
 }
