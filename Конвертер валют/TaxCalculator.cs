@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Calculator_program
 {
 
-    class TaxCalculator : BaseCalculator
+    public class TaxCalculator : BaseCalculator
     {
         public const string dollarIndex = "USD";
         public const string euroIndex = "EUR";

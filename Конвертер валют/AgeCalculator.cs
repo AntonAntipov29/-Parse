@@ -7,10 +7,10 @@ using System.Globalization;
 
 namespace Calculator_program
 {
-    internal class AgeCalculator : BaseCalculator
+    public class AgeCalculator : BaseCalculator
     {
-        DateTime dayOfBirth;
-        DateTime timeNow = DateTime.Now;
+        private DateTime dayOfBirth;
+        private DateTime timeNow = DateTime.Now;
         private double fullYears;
         private double daysInYear = 365.24;
 

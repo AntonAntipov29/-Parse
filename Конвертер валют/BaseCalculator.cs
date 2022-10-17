@@ -8,13 +8,12 @@ namespace Calculator_program
 {
     public class BaseCalculator
     {
-        int id;
-        string name;
-
         public const string exitIndex = "Exit";
         public const string calcAgainIndex = "Calculate again";
         public const string returnIndex = "Return";
         public string finalAnswer;
+        protected string name;
+        protected int id;
 
         public BaseCalculator(string name, int id)
         {
