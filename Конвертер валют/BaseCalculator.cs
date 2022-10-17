@@ -27,6 +27,12 @@ namespace Calculator_program
             get { return id; }
         }
 
+        protected string finalAnswer;
+        protected UserInput userInput = new UserInput();
+
+        public void Show()
+        {
+            AskFinalAnswer();
         }
 
         public void AskFinalAnswer()
