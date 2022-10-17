@@ -176,7 +176,7 @@ namespace Calculator_program
 
         private void TypeOfUserInputCommand(bool showWarning = true)
         {
-            if (currentInput == TaxCalculator.calcAgainIndex || currentInput == TaxCalculator.exitIndex || currentInput == TaxCalculator.returnIndex)
+            if (currentInput == Commands.returnIndex || currentInput == Commands.exitIndex || currentInput == Commands.calcAgainIndex)
             {
                 checkedInput = currentInput;
             }

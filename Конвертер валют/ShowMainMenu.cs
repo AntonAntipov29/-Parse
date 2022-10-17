@@ -37,7 +37,7 @@ namespace Calculator_program
                 TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв",3);
                 taxCalculator.Show();
             }
-            else if (choiseInput == BaseCalculator.exitIndex)
+            else if (choiseInput == Commands.exitIndex)
             {
                 Environment.Exit(0);
             }

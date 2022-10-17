@@ -8,10 +8,6 @@ namespace Calculator_program
 {
     public class BaseCalculator
     {
-        public const string exitIndex = "Exit";
-        public const string calcAgainIndex = "Calculate again";
-        public const string returnIndex = "Return";
-        public string finalAnswer;
         protected string name;
         protected int id;
 
@@ -38,16 +34,16 @@ namespace Calculator_program
             Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
             Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
             finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
-            if (finalAnswer == exitIndex)
+            if (finalAnswer == Commands.exitIndex)
             {
                 Environment.Exit(0);
             }
-            else if (finalAnswer == calcAgainIndex)
+            else if (finalAnswer == Commands.calcAgainIndex)
             {
                 Console.Clear();
                 Show(); 
             }
-            else if (finalAnswer == returnIndex)
+            else if (finalAnswer == Commands.returnIndex)
             {
                 Console.Clear();
                 MainMenu mainMenu = new MainMenu();
@@ -61,5 +57,12 @@ namespace Calculator_program
                 userInput.GetUserInput(TypeOfUserInput.command);
             }
         }
+    }
+
+    public class Commands
+    {
+        public const string exitIndex = "Exit";
+        public const string calcAgainIndex = "Calculate again";
+        public const string returnIndex = "Return";
     }
 }
