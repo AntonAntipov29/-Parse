@@ -19,12 +19,21 @@ namespace Calculator_program
         UserInput userInput = new UserInput();
 
         void GettingInput()
+        public BaseCalculator(string name, int id)
         {
-
+            this.name = name;
+            this.id = id;
         }
 
-        void Calculation()
+        public string Name
         {
+            get { return name; }
+        }
+
+        public int ID
+        {
+            get { return id; }
+        }
 
         }
 

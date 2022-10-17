@@ -22,19 +22,19 @@ namespace Calculator_program
             if (choiseInput == "1")
             {
                 Console.Clear();
-                SimpleCalculator simpleCalculator = new SimpleCalculator();
+                SimpleCalculator simpleCalculator = new SimpleCalculator("Простий калькулятор",1);
                 simpleCalculator.Show();
             }
             else if (choiseInput == "2")
             {
                 Console.Clear();
-                AgeCalculator ageCalculator = new AgeCalculator();
+                AgeCalculator ageCalculator = new AgeCalculator("Калькулятор вiку",2);
                 ageCalculator.Show();
             }
             else if (choiseInput == "3")
             {
                 Console.Clear();
-                TaxCalculator taxCalculator = new TaxCalculator();
+                TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв",3);
                 taxCalculator.Show();
             }
             else if (choiseInput == BaseCalculator.exitIndex)

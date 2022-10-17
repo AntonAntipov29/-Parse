@@ -15,6 +15,15 @@ namespace Calculator_program
         private double daysInYear = 365.24;
 
         UserInput userInput = new UserInput();
+        public AgeCalculator(string name, int id) : base(name, id)
+        {
+            base.name = name;
+        }
+
+        public string nameOfCalculator
+        {
+            set { name = value; }
+        }
 
         public void Show()
         {
@@ -24,8 +33,9 @@ namespace Calculator_program
         }
 
         private void GettingInput()
-        {            
-            Console.WriteLine("Ви обрали калькулятор вiку.");
+        {
+
+            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
             string userInputString = userInput.GetUserInput(TypeOfUserInput.date);
             dayOfBirth = DateTime.Parse(userInputString);

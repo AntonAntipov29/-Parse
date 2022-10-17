@@ -26,8 +26,16 @@ namespace Calculator_program
         private double hryvniaRate = 1;
         private double currencyVariant = 0;
         private string formatMoney = "{0:N}";
-       
-        UserInput userInput = new UserInput();
+
+        public TaxCalculator(string name, int id) : base(name,id)
+        {
+            base.name = name;
+        }
+
+        public string nameOfCalculator
+        {
+            set { name = value; }
+        }
 
         public void Show()
         {
@@ -38,6 +46,7 @@ namespace Calculator_program
 
         private void GettingInput()
         {
+            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
             currency = userInput.GetUserInput(TypeOfUserInput.currency);
             Console.WriteLine($"Введена валюта - {currency}.");

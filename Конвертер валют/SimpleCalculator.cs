@@ -24,6 +24,16 @@ namespace Calculator_program
         private const string formatMoney = "{0:N}";
 
         UserInput userInput = new UserInput();
+        public SimpleCalculator(string name, int id) : base(name, id)
+        {
+            base.name = name;
+            base.id = id;   
+        }
+
+        public string nameOfCalculator
+        {
+            set { name = value; }
+        }
 
         public void Show()
         {
@@ -43,7 +53,7 @@ namespace Calculator_program
                 NumberDecimalSeparator = ".",
             };
 
-            Console.WriteLine("Ви обрали простий калькулятор.");
+            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть перше число");
             firstNumber = userInput.GetUserInput(TypeOfUserInput.number);
 
