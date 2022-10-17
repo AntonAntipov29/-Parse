@@ -23,7 +23,6 @@ namespace Calculator_program
         private const double fullPercentage = 100;
         private const string formatMoney = "{0:N}";
 
-        UserInput userInput = new UserInput();
         public SimpleCalculator(string name, int id) : base(name, id)
         {
             base.name = name;

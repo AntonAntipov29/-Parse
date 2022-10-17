@@ -16,9 +16,6 @@ namespace Calculator_program
         public const string returnIndex = "Return";
         public string finalAnswer;
 
-        UserInput userInput = new UserInput();
-
-        void GettingInput()
         public BaseCalculator(string name, int id)
         {
             this.name = name;
@@ -49,7 +46,7 @@ namespace Calculator_program
             else if (finalAnswer == calcAgainIndex)
             {
                 Console.Clear();
-                GettingInput();
+                Show(); 
             }
             else if (finalAnswer == returnIndex)
             {

@@ -14,7 +14,6 @@ namespace Calculator_program
         private double fullYears;
         private double daysInYear = 365.24;
 
-        UserInput userInput = new UserInput();
         public AgeCalculator(string name, int id) : base(name, id)
         {
             base.name = name;
@@ -49,9 +48,9 @@ namespace Calculator_program
         private void Calculation()
         {
             TimeSpan age = timeNow - dayOfBirth;
-            fullYears =  age.TotalDays / daysInYear;
-            Console.WriteLine("Вам " + Math.Floor(fullYears) + " рокiв");          
-            Console.WriteLine(" ");    
-        }       
+            fullYears = age.TotalDays / daysInYear;
+            Console.WriteLine("Вам " + Math.Floor(fullYears) + " рокiв");
+            Console.WriteLine(" ");
+        }
     }
 }
