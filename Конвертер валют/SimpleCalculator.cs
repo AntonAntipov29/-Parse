@@ -34,14 +34,14 @@ namespace Calculator_program
             set { name = value; }
         }
 
-        public void Show()
+        public new void Show()
         {
             GettingInput();
             Calculation();
             AskFinalAnswer();
         }
 
-        private void GettingInput()
+        public override void GettingInput()
         {
             NumberFormatInfo formatComa = new NumberFormatInfo()
             {
@@ -97,7 +97,7 @@ namespace Calculator_program
             Console.Clear();
         }
 
-        private void Calculation()
+        public override void Calculation()
         {
             if (operation == additionIndex)
 	        {

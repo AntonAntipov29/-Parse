@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator_program
 {
-    public class BaseCalculator
+    public abstract class BaseCalculator
     {
         protected string name;
         protected int id;
@@ -32,8 +32,14 @@ namespace Calculator_program
 
         public void Show()
         {
+            GettingInput();
+            Calculation();
             AskFinalAnswer();
         }
+
+        public abstract void GettingInput();
+
+        public abstract void Calculation();
 
         public void AskFinalAnswer()
         {
@@ -63,12 +69,5 @@ namespace Calculator_program
                 userInput.GetUserInput(TypeOfUserInput.command);
             }
         }
-    }
-
-    public class Commands
-    {
-        public const string exitIndex = "Exit";
-        public const string calcAgainIndex = "Calculate again";
-        public const string returnIndex = "Return";
     }
 }

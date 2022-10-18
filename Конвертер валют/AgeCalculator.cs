@@ -24,16 +24,15 @@ namespace Calculator_program
             set { name = value; }
         }
 
-        public void Show()
+        public new void Show()
         {
             GettingInput();
             Calculation();
             AskFinalAnswer();
         }
 
-        private void GettingInput()
+        public override void GettingInput()
         {
-
             Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
             string userInputString = userInput.GetUserInput(TypeOfUserInput.date);
@@ -45,7 +44,7 @@ namespace Calculator_program
             Console.Clear();
         }
 
-        private void Calculation()
+        public override void Calculation()
         {
             TimeSpan age = timeNow - dayOfBirth;
             fullYears = age.TotalDays / daysInYear;

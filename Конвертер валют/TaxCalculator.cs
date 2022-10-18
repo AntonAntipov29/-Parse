@@ -37,14 +37,14 @@ namespace Calculator_program
             set { name = value; }
         }
 
-        public void Show()
+        public new void Show()
         {
             GettingInput();
             Calculation();
             AskFinalAnswer();
         }
 
-        private void GettingInput()
+        public override void GettingInput()
         {
             Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
@@ -53,7 +53,7 @@ namespace Calculator_program
             Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
         }
 
-        private void Calculation()
+        public override void Calculation()
         {
             string[] months = { "Сiчень", "Лютий", "Березень", "Квiтень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" };
             string[] monthsProfit = new string[12];
