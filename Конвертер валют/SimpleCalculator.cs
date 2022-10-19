@@ -36,6 +36,7 @@ namespace Calculator_program
 
         public new void Show()
         {
+            ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
@@ -52,7 +53,6 @@ namespace Calculator_program
                 NumberDecimalSeparator = ".",
             };
 
-            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть перше число");
             firstNumber = userInput.GetUserInput(TypeOfUserInput.number);
 

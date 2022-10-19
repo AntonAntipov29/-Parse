@@ -26,6 +26,7 @@ namespace Calculator_program
 
         public new void Show()
         {
+            ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
@@ -33,7 +34,6 @@ namespace Calculator_program
 
         public override void GettingInput()
         {
-            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
             string userInputString = userInput.GetUserInput(TypeOfUserInput.date);
             dayOfBirth = DateTime.Parse(userInputString);

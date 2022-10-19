@@ -31,6 +31,7 @@ namespace Calculator_program
 
         public void Show()
         {
+            ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
@@ -39,6 +40,11 @@ namespace Calculator_program
         public abstract void GettingInput();
 
         public abstract void Calculation();
+
+        public void ShowGreeting()
+        {
+            Console.WriteLine($"Ви обрали {name}!");
+        }
 
         public void AskFinalAnswer()
         {

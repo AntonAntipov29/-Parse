@@ -39,6 +39,7 @@ namespace Calculator_program
 
         public new void Show()
         {
+            ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
@@ -46,7 +47,6 @@ namespace Calculator_program
 
         public override void GettingInput()
         {
-            Console.WriteLine($"Ви обрали {name}.");
             Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
             currency = userInput.GetUserInput(TypeOfUserInput.currency);
             Console.WriteLine($"Введена валюта - {currency}.");
