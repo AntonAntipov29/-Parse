@@ -10,6 +10,8 @@ namespace Calculator_program
     {
         protected string name;
         protected int id;
+        protected string finalAnswer;
+        protected UserInput userInput = new UserInput();
 
         public BaseCalculator(string name, int id)
         {
@@ -26,9 +28,6 @@ namespace Calculator_program
         {
             get { return id; }
         }
-
-        protected string finalAnswer;
-        protected UserInput userInput = new UserInput();
 
         public void Show()
         {
