@@ -19,10 +19,7 @@ namespace Calculator_program
             base.name = name;
         }
 
-        public string nameOfCalculator
-        {
-            set { name = value; }
-        }
+        public string nameOfCalculator { set { name = value; } }
 
         public new void Show()
         {

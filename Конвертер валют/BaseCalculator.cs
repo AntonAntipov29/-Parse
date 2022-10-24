@@ -19,15 +19,9 @@ namespace Calculator_program
             this.id = id;
         }
 
-        public string Name
-        {
-            get { return name; }
-        }
+        public string Name { get { return name; } }
 
-        public int ID
-        {
-            get { return id; }
-        }
+        public int ID { get { return id; } }
 
         public void Show()
         {
@@ -58,7 +52,7 @@ namespace Calculator_program
             else if (finalAnswer == Commands.calcAgainIndex)
             {
                 Console.Clear();
-                Show(); 
+                Show();
             }
             else if (finalAnswer == Commands.returnIndex)
             {

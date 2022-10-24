@@ -18,23 +18,23 @@ namespace Calculator_program
 
             UserInput userInput = new UserInput();
             choiseInput = userInput.GetUserInput(TypeOfUserInput.menuItem, TypeOfUserInput.command);
-            
+
             if (choiseInput == "1")
             {
                 Console.Clear();
-                SimpleCalculator simpleCalculator = new SimpleCalculator("Простий калькулятор",1);
+                SimpleCalculator simpleCalculator = new SimpleCalculator("Простий калькулятор", 1);
                 simpleCalculator.Show();
             }
             else if (choiseInput == "2")
             {
                 Console.Clear();
-                AgeCalculator ageCalculator = new AgeCalculator("Калькулятор вiку",2);
+                AgeCalculator ageCalculator = new AgeCalculator("Калькулятор вiку", 2);
                 ageCalculator.Show();
             }
             else if (choiseInput == "3")
             {
                 Console.Clear();
-                TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв",3);
+                TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв", 3);
                 taxCalculator.Show();
             }
             else if (choiseInput == Commands.exitIndex)

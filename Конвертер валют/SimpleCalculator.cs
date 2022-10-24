@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using System.Globalization;
 
 namespace Calculator_program
-{ 
+{
     public class SimpleCalculator : BaseCalculator
     {
         string firstNumber;
         double firstNumberDouble;
-        string secondNumber;    
+        string secondNumber;
         double secondNumberDouble;
         string operation;
         double result;
         public const string additionIndex = "+";
         public const string substractionIndex = "-";
         public const string multiplicationIndex = "*";
-        public const string divisionIndex = "/"; 
+        public const string divisionIndex = "/";
         public const string interestIndex = "%";
         private const double fullPercentage = 100;
         private const string formatMoney = "{0:N}";
@@ -26,13 +26,10 @@ namespace Calculator_program
         public SimpleCalculator(string name, int id) : base(name, id)
         {
             base.name = name;
-            base.id = id;   
+            base.id = id;
         }
 
-        public string nameOfCalculator
-        {
-            set { name = value; }
-        }
+        public string nameOfCalculator { set { name = value; } }
 
         public new void Show()
         {
@@ -58,7 +55,7 @@ namespace Calculator_program
 
             if (firstNumber.Contains(","))
             {
-                firstNumberDouble = Double.Parse(firstNumber, formatComa);              
+                firstNumberDouble = Double.Parse(firstNumber, formatComa);
             }
             else if (firstNumber.Contains("."))
             {
@@ -86,9 +83,9 @@ namespace Calculator_program
                 secondNumberDouble = Double.Parse(secondNumber, formatDot);
             }
             else
-            {             
+            {
                 secondNumberDouble = Double.Parse(secondNumber);
-            } 
+            }
 
             Console.Clear();
             Console.WriteLine($"Ви ввели вираз: {firstNumber} {operation} {secondNumber}");
@@ -100,9 +97,9 @@ namespace Calculator_program
         public override void Calculation()
         {
             if (operation == additionIndex)
-	        {
+            {
                 result = firstNumberDouble + secondNumberDouble;
-	        }
+            }
             else if (operation == substractionIndex)
             {
                 result = firstNumberDouble - secondNumberDouble;
@@ -118,20 +115,20 @@ namespace Calculator_program
             else if (operation == interestIndex)
             {
                 result = (firstNumberDouble * fullPercentage) / secondNumberDouble;
-            }    
-            
+            }
+
             if (operation == interestIndex)
-	        {
-                Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
-                Console.WriteLine(" %");           
-	        }         
-            else 
             {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);     
-            }    
-                      
+                Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
+                Console.WriteLine(" %");
+            }
+            else
+            {
+                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);
+            }
+
             Console.WriteLine(" ");
-        }       
+        }
     }
 }
 

@@ -27,15 +27,12 @@ namespace Calculator_program
         private double currencyVariant = 0;
         private string formatMoney = "{0:N}";
 
-        public TaxCalculator(string name, int id) : base(name,id)
+        public TaxCalculator(string name, int id) : base(name, id)
         {
             base.name = name;
         }
 
-        public string nameOfCalculator
-        {
-            set { name = value; }
-        }
+        public string nameOfCalculator { set { name = value; } }
 
         public new void Show()
         {
