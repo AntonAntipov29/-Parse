@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator_program
 {
-    public abstract class BaseCalculator
+    public abstract class BaseCalculator : ICalculator
     {
         protected string name;
         protected int id;
