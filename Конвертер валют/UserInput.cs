@@ -128,12 +128,13 @@ namespace Calculator_program
         {
             double number;
             bool isNumber = double.TryParse(currentInput, out number);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
             if (isNumber)
             {
                 checkedInput = currentInput;
             }
-            else if (!isNumber && currentInput.Contains("."))
+            else if (!isNumber && !isLetter && currentInput.Contains("."))
             {
                 Convert.ToDouble(currentInput, formatDot);                
                 checkedInput = Convert.ToString(currentInput);
