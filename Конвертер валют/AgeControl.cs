@@ -8,7 +8,7 @@ using Calculator_program;
 namespace Calculator_program
 {
     public class AgeControl
-    {  
+    {
         public bool ControlAsk()
         {
             uint rightYear = 2004;
@@ -26,7 +26,7 @@ namespace Calculator_program
                 Console.WriteLine("Повнолiття пiдтверджено. Натиснiть будь-яку кнопку, щоб продовжити.");
                 Console.ReadKey();
                 Console.Clear();
-                return true;               
+                return true;
             }
             else
             {

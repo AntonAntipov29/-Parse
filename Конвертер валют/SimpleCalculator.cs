@@ -6,34 +6,40 @@ using System.Threading.Tasks;
 using System.Globalization;
 
 namespace Calculator_program
-{ 
-    public class SimpleCalculator
+{
+    public class SimpleCalculator : BaseCalculator
     {
         string firstNumber;
         double firstNumberDouble;
-        string secondNumber;    
+        string secondNumber;
         double secondNumberDouble;
         string operation;
         double result;
         public const string additionIndex = "+";
         public const string substractionIndex = "-";
         public const string multiplicationIndex = "*";
-        public const string divisionIndex = "/"; 
+        public const string divisionIndex = "/";
         public const string interestIndex = "%";
         private const double fullPercentage = 100;
         private const string formatMoney = "{0:N}";
-        private string finalAnswer;
 
-        UserInput userInput = new UserInput();
-
-        public void Show()
+        public SimpleCalculator(string name, int id) : base(name, id)
         {
-            GettingInput();
-            Calculation();
-            ShowResult();
+            base.name = name;
+            base.id = id;
         }
 
-        private void GettingInput()
+        public string nameOfCalculator { set { name = value; } }
+
+        public new void Show()
+        {
+            ShowGreeting();
+            GettingInput();
+            Calculation();
+            AskFinalAnswer();
+        }
+
+        public override void GettingInput()
         {
             NumberFormatInfo formatComa = new NumberFormatInfo()
             {
@@ -44,13 +50,12 @@ namespace Calculator_program
                 NumberDecimalSeparator = ".",
             };
 
-            Console.WriteLine("Ви обрали простий калькулятор.");
             Console.WriteLine("Введiть перше число");
             firstNumber = userInput.GetUserInput(TypeOfUserInput.number);
 
             if (firstNumber.Contains(","))
             {
-                firstNumberDouble = Double.Parse(firstNumber, formatComa);              
+                firstNumberDouble = Double.Parse(firstNumber, formatComa);
             }
             else if (firstNumber.Contains("."))
             {
@@ -78,9 +83,9 @@ namespace Calculator_program
                 secondNumberDouble = Double.Parse(secondNumber, formatDot);
             }
             else
-            {             
+            {
                 secondNumberDouble = Double.Parse(secondNumber);
-            } 
+            }
 
             Console.Clear();
             Console.WriteLine($"Ви ввели вираз: {firstNumber} {operation} {secondNumber}");
@@ -89,12 +94,12 @@ namespace Calculator_program
             Console.Clear();
         }
 
-        private void Calculation()
+        public override void Calculation()
         {
             if (operation == additionIndex)
-	        {
+            {
                 result = firstNumberDouble + secondNumberDouble;
-	        }
+            }
             else if (operation == substractionIndex)
             {
                 result = firstNumberDouble - secondNumberDouble;
@@ -110,49 +115,20 @@ namespace Calculator_program
             else if (operation == interestIndex)
             {
                 result = (firstNumberDouble * fullPercentage) / secondNumberDouble;
-            }           
-        }       
-        
-        private void ShowResult()
-        {
-            if (operation == interestIndex)
-	        {
-                Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
-                Console.WriteLine(" %");           
-	        }         
-            else 
-            {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);     
-            }    
-                      
-            Console.WriteLine(" ");
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
-            Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
-            finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
+            }
 
-            if (finalAnswer == TaxCalculator.exitIndex)
+            if (operation == interestIndex)
             {
-                Environment.Exit(0);
-            }
-            else if (finalAnswer == TaxCalculator.calcAgainIndex)
-            {
-                Console.Clear();
-                Show();
-            }
-            else if (finalAnswer == TaxCalculator.returnIndex)
-            {
-                Console.Clear();
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.ShowMenu();
+                Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
+                Console.WriteLine(" %");
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
-                ShowResult();
-                userInput.GetUserInput(TypeOfUserInput.command);
+                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);
             }
-        }   
+
+            Console.WriteLine(" ");
+        }
     }
 }
 

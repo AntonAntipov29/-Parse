@@ -128,12 +128,13 @@ namespace Calculator_program
         {
             double number;
             bool isNumber = double.TryParse(currentInput, out number);
+            bool isLetter = currentInput.Any(Char.IsLetter);
 
             if (isNumber)
             {
                 checkedInput = currentInput;
             }
-            else if (!isNumber && currentInput.Contains("."))
+            else if (!isNumber && !isLetter && currentInput.Contains("."))
             {
                 Convert.ToDouble(currentInput, formatDot);                
                 checkedInput = Convert.ToString(currentInput);
@@ -176,7 +177,7 @@ namespace Calculator_program
 
         private void TypeOfUserInputCommand(bool showWarning = true)
         {
-            if (currentInput == TaxCalculator.calcAgainIndex || currentInput == TaxCalculator.exitIndex || currentInput == TaxCalculator.returnIndex)
+            if (currentInput == Commands.returnIndex || currentInput == Commands.exitIndex || currentInput == Commands.calcAgainIndex)
             {
                 checkedInput = currentInput;
             }
