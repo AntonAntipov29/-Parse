@@ -9,10 +9,13 @@ namespace Calculator_program
 {
     public class AgeCalculator : BaseCalculator
     {
-        private DateTime dayOfBirth;
+        public DateTime dayOfBirth;
         private DateTime timeNow = DateTime.Now;
+        public string dayOfBirthString;
         private double fullYears;
         private double daysInYear = 365.24;
+
+        AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
 
         public AgeCalculator(string name, int id) : base(name, id)
         {
@@ -21,32 +24,32 @@ namespace Calculator_program
 
         public string nameOfCalculator { set { name = value; } }
 
-        public new void Show()
+        public new void Start()
         {
             ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
         }
-
+     
         public override void GettingInput()
         {
-            Console.WriteLine("Введiть дату народження в форматi дд.мм.рррр :");
-            string userInputString = userInput.GetUserInput(TypeOfUserInput.date);
-            dayOfBirth = DateTime.Parse(userInputString);
-            Console.Clear();
-            Console.WriteLine($"Ви ввели дату: {dayOfBirth.ToShortDateString()}");
-            Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
+            ageCalculatorView.AskFirstInput();           
+            string userInputString = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.date);
+            dayOfBirth = DateTime.Parse(userInputString);         
+            ageCalculatorView.Clear();
+            dayOfBirthString = dayOfBirth.ToShortDateString();
+            ageCalculatorView.CheckInput(dayOfBirthString);          
+            ageCalculatorView.AskOfContinue();          
             Console.ReadKey();
-            Console.Clear();
+            ageCalculatorView.Clear();           
         }
 
         public override void Calculation()
         {
             TimeSpan age = timeNow - dayOfBirth;
-            fullYears = age.TotalDays / daysInYear;
-            Console.WriteLine("Вам " + Math.Floor(fullYears) + " рокiв");
-            Console.WriteLine(" ");
+            fullYears = Math.Floor(age.TotalDays / daysInYear);
+            ageCalculatorView.ShowResult(fullYears);       
         }
-    }
+    }  
 }
