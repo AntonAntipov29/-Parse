@@ -4,24 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Xml.Linq;
 
 namespace Calculator_program
 {
-    public class SimpleCalculator : BaseCalculator
+    public class SimpleCalculator : BaseCalculator 
     {
-        string firstNumber;
-        double firstNumberDouble;
-        string secondNumber;
-        double secondNumberDouble;
-        string operation;
-        double result;
+        public string firstNumber;
+        public double firstNumberDouble;
+        public string secondNumber;
+        public double secondNumberDouble;
+        public string operation;
+        public double result;
         public const string additionIndex = "+";
         public const string substractionIndex = "-";
         public const string multiplicationIndex = "*";
         public const string divisionIndex = "/";
         public const string interestIndex = "%";
         private const double fullPercentage = 100;
-        private const string formatMoney = "{0:N}";
+        public const string formatMoney = "{0:N}";
+
+        SimpleCalculatorView simpleCalculatorView = new SimpleCalculatorView(); 
 
         public SimpleCalculator(string name, int id) : base(name, id)
         {
@@ -31,13 +34,14 @@ namespace Calculator_program
 
         public string nameOfCalculator { set { name = value; } }
 
-        public new void Show()
+        public new void Start()
         {
             ShowGreeting();
             GettingInput();
             Calculation();
             AskFinalAnswer();
         }
+
 
         public override void GettingInput()
         {
@@ -50,7 +54,7 @@ namespace Calculator_program
                 NumberDecimalSeparator = ".",
             };
 
-            Console.WriteLine("Введiть перше число");
+            simpleCalculatorView.AskFirstInput();
             firstNumber = userInput.GetUserInput(TypeOfUserInput.number);
 
             if (firstNumber.Contains(","))
@@ -66,12 +70,11 @@ namespace Calculator_program
                 firstNumberDouble = Double.Parse(firstNumber);
             }
 
-            Console.Clear();
-            Console.WriteLine($"Ведiть потрiбну операцiю: |{additionIndex}| - додавання, |{substractionIndex}| - вiднiмання, |{multiplicationIndex}| - множення, |{divisionIndex}| -  дiлення,");
-            Console.WriteLine($"|{interestIndex}| - вiдсоткове спiввiдношення першого числа до другого ");
+            simpleCalculatorView.Clear();
+            simpleCalculatorView.AskActionInput(additionIndex, substractionIndex, multiplicationIndex, divisionIndex, interestIndex);
             operation = userInput.GetUserInput(TypeOfUserInput.operation);
-            Console.Clear();
-            Console.WriteLine("Введiть друге число");
+            simpleCalculatorView.Clear();
+            simpleCalculatorView.AskSecondInput();
             secondNumber = userInput.GetUserInput(TypeOfUserInput.number);
 
             if (secondNumber.Contains(","))
@@ -87,11 +90,11 @@ namespace Calculator_program
                 secondNumberDouble = Double.Parse(secondNumber);
             }
 
-            Console.Clear();
-            Console.WriteLine($"Ви ввели вираз: {firstNumber} {operation} {secondNumber}");
-            Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
+            simpleCalculatorView.Clear();
+            simpleCalculatorView.CheckInput(firstNumber, secondNumber, operation);
+            simpleCalculatorView.AskOfContinue();
             Console.ReadKey();
-            Console.Clear();
+            simpleCalculatorView.Clear();
         }
 
         public override void Calculation()
@@ -116,19 +119,16 @@ namespace Calculator_program
             {
                 result = (firstNumberDouble * fullPercentage) / secondNumberDouble;
             }
-
+         
             if (operation == interestIndex)
             {
-                Console.Write("Вiдсоткове спiввiдношення " + firstNumberDouble + " до " + secondNumberDouble + " складає " + formatMoney, result);
-                Console.WriteLine(" %");
+                simpleCalculatorView.ShowResultInterest(firstNumberDouble, secondNumberDouble, result, formatMoney);
             }
             else
             {
-                Console.Write("Результат вашого виразу: " + firstNumberDouble + " " + operation + " " + secondNumberDouble + " = " + formatMoney, result);
+                simpleCalculatorView.ShowResultOther(firstNumberDouble, secondNumberDouble, operation, result, formatMoney);
             }
-
-            Console.WriteLine(" ");
         }
-    }
+    }    
 }
 
