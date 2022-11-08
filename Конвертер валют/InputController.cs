@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace Calculator_program
 {
-    public class UserInput
+    public class InputController : ICommand
     {
         public string checkedInput;
         private string currentInput;
@@ -177,7 +177,15 @@ namespace Calculator_program
 
         private void TypeOfUserInputCommand(bool showWarning = true)
         {
-            if (currentInput == Commands.returnIndex || currentInput == Commands.exitIndex || currentInput == Commands.calcAgainIndex)
+            if (currentInput == Commands.returnIndex || currentInput == Commands.mainMenuIndex)
+            {
+                OnMainMenuEntered();
+            }
+            else if (currentInput == Commands.exitIndex)
+            {
+                OnExitEntered();
+            }
+            else if (currentInput == Commands.calcAgainIndex)
             {
                 checkedInput = currentInput;
             }
@@ -223,6 +231,18 @@ namespace Calculator_program
         public void ShowWarning()
         {
             Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
+        }
+
+        public void OnExitEntered()
+        {
+            Environment.Exit(0);
+        }
+
+        public void OnMainMenuEntered()
+        {
+            Console.Clear();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.ShowMenu();
         }
     }
 }
