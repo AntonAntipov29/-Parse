@@ -9,7 +9,7 @@ namespace Calculator_program
 {
     internal interface ICalculator
     {
-        void Show();
+        void Start();
         
         void GettingInput();
 
