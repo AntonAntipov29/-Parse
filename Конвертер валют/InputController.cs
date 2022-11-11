@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace Calculator_program
 {
-    public class UserInput
+    public class InputController : ICommand
     {
         public string checkedInput;
         private string currentInput;
@@ -49,14 +49,13 @@ namespace Calculator_program
         }
 
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
-        {
-            
-            checkedInput = GetUserInput(firstType, false);
+        {           
+            checkedInput = GetUserInput(firstType, true);
             bool isWrongType = string.IsNullOrEmpty(checkedInput);
 
             if (isWrongType)
             {
-                CheckUserInputWithType(secondType, false);
+                CheckUserInputWithType(secondType, true);
             }           
             
             return checkedInput;
@@ -94,7 +93,7 @@ namespace Calculator_program
             }
         }
 
-        private void TypeOfUserInputYear(bool showWarning)
+        private void TypeOfUserInputYear(bool showWarning = true)
         {
             if (int.TryParse(currentInput, out int number))
             {
@@ -177,13 +176,25 @@ namespace Calculator_program
 
         private void TypeOfUserInputCommand(bool showWarning = true)
         {
-            if (currentInput == Commands.returnIndex || currentInput == Commands.exitIndex || currentInput == Commands.calcAgainIndex)
+            if (currentInput == Commands.returnIndex || currentInput == Commands.mainMenuIndex)
+            {
+                OnMainMenuEntered();
+            }
+            else if (currentInput == Commands.exitIndex)
+            {
+                OnExitEntered();
+            }
+            else if (currentInput == Commands.calcAgainIndex)
             {
                 checkedInput = currentInput;
             }
             else if (showWarning)
             {
                 ShowWarning();
+                GetUserInput(TypeOfUserInput.command);
+            }
+            else
+            {
                 GetUserInput(TypeOfUserInput.command);
             }
         }
@@ -215,7 +226,7 @@ namespace Calculator_program
                 GetUserInput(TypeOfUserInput.date);
             }
             else
-            {
+            {              
                 GetUserInput(TypeOfUserInput.date);
             }
         }
@@ -223,6 +234,18 @@ namespace Calculator_program
         public void ShowWarning()
         {
             Console.WriteLine("Помилка, неправильний ввiд! Спробуйте ще.");
+        }
+
+        public void OnExitEntered()
+        {
+            Environment.Exit(0);
+        }
+
+        public void OnMainMenuEntered()
+        {
+            Console.Clear();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.ShowMenu();
         }
     }
 }

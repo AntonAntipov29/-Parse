@@ -27,6 +27,8 @@ namespace Calculator_program
         private double currencyVariant = 0;
         private string formatMoney = "{0:N}";
 
+        TaxCalculatorView taxCalculatorView = new TaxCalculatorView();
+
         public TaxCalculator(string name, int id) : base(name, id)
         {
             base.name = name;
@@ -34,7 +36,7 @@ namespace Calculator_program
 
         public string nameOfCalculator { set { name = value; } }
 
-        public new void Show()
+        public new void Start()
         {
             ShowGreeting();
             GettingInput();
@@ -44,10 +46,10 @@ namespace Calculator_program
 
         public override void GettingInput()
         {
-            Console.WriteLine("Введiть валюту в якiй ви отримуєте дохiд UAH, USD або EUR");
+            taxCalculatorView.AskFirstInput();
             currency = userInput.GetUserInput(TypeOfUserInput.currency);
-            Console.WriteLine($"Введена валюта - {currency}.");
-            Console.WriteLine("Натиснiть ENTER, щоб продовжити.");
+            taxCalculatorView.CheckFirstInput(currency);
+            taxCalculatorView.AskOfContinue();
         }
 
         public override void Calculation()
@@ -69,8 +71,8 @@ namespace Calculator_program
 
             for (count = 0; count < months.Length; count++)
             {
-                Console.Clear();
-                Console.WriteLine("Введiть дохiд за " + months[count]);
+                taxCalculatorView.Clear();
+                taxCalculatorView.AskSecondInput(months, count);
                 monthsProfit[count] = userInput.GetUserInput(TypeOfUserInput.number);
 
                 if (monthsProfit[count].Contains(","))
@@ -107,21 +109,12 @@ namespace Calculator_program
             socialCont = MIN_SALARY * socialContRate;
             profit = yearProfit - singleTax - socialCont;
 
-            Console.Clear();
-            Console.Write("Ви ввели " + formatMoney, result);
-            Console.Write(" " + currency);
-            Console.WriteLine(". Для розрахунку податкiв натиснiть ENTER");
+            taxCalculatorView.Clear();
+            taxCalculatorView.CheckSecondInput(currency, formatMoney, result);
+            taxCalculatorView.AskOfContinue();
             Console.ReadKey();
-            Console.Clear();
-            Console.Write("Дохiд до вирахування податкiв - " + formatMoney, yearProfit);
-            Console.WriteLine(" гривень");
-            Console.Write("Всього єдиного податку (5%) - " + formatMoney, singleTax);
-            Console.WriteLine(" гривень");
-            Console.Write("Всього єдиного соцiального внеску (22%) - " + formatMoney, socialCont);
-            Console.WriteLine(" гривень");
-            Console.Write("Прибуток пiсля вирахування податкiв - " + formatMoney, profit);
-            Console.WriteLine(" гривень");
-            Console.WriteLine(" ");
+            taxCalculatorView.Clear();
+            taxCalculatorView.ShowResult(yearProfit, singleTax, socialCont, profit, formatMoney);
         }
     }
 }

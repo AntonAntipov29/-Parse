@@ -11,7 +11,8 @@ namespace Calculator_program
         protected string name;
         protected int id;
         protected string finalAnswer;
-        protected UserInput userInput = new UserInput();
+        protected InputController userInput = new InputController();
+        protected BaseCalculatorView baseCalculatorView = new BaseCalculatorView();
 
         public BaseCalculator(string name, int id)
         {
@@ -23,7 +24,7 @@ namespace Calculator_program
 
         public int ID { get { return id; } }
 
-        public void Show()
+        public void Start()
         {
             ShowGreeting();
             GettingInput();
@@ -31,19 +32,18 @@ namespace Calculator_program
             AskFinalAnswer();
         }
 
+        public void ShowGreeting()
+        {
+            baseCalculatorView.ShowGreeting(name);
+        }
+
         public abstract void GettingInput();
 
         public abstract void Calculation();
 
-        public void ShowGreeting()
-        {
-            Console.WriteLine($"Ви обрали {name}!");
-        }
-
         public void AskFinalAnswer()
         {
-            Console.WriteLine("Щоб закрити програму напишiть Exit, щоб повернутись в головне меню напишiть Return.");
-            Console.WriteLine("Щоб рахувати знову напишiть Calculate again.");
+            baseCalculatorView.AskFinalAnswer();
             finalAnswer = userInput.GetUserInput(TypeOfUserInput.command);
             if (finalAnswer == Commands.exitIndex)
             {
@@ -52,7 +52,7 @@ namespace Calculator_program
             else if (finalAnswer == Commands.calcAgainIndex)
             {
                 Console.Clear();
-                Show();
+                Start();
             }
             else if (finalAnswer == Commands.returnIndex)
             {
@@ -63,7 +63,7 @@ namespace Calculator_program
             else
             {
                 Console.Clear();
-                Console.WriteLine("Неправильний ввiд! Використовуйте Exit, Return або Calculate again.");
+                userInput.ShowWarning();              
                 AskFinalAnswer();
                 userInput.GetUserInput(TypeOfUserInput.command);
             }

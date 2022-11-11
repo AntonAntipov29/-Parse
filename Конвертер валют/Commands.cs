@@ -11,5 +11,6 @@ namespace Calculator_program
         public const string exitIndex = "Exit";
         public const string calcAgainIndex = "Calculate again";
         public const string returnIndex = "Return";
+        public const string mainMenuIndex = "Main menu";
     }
 }

@@ -16,26 +16,26 @@ namespace Calculator_program
             Console.WriteLine("2. Калькулятор вiку");
             Console.WriteLine("3. Калькулятор податкiв");
 
-            UserInput userInput = new UserInput();
+            InputController userInput = new InputController();
             choiseInput = userInput.GetUserInput(TypeOfUserInput.menuItem, TypeOfUserInput.command);
 
             if (choiseInput == "1")
             {
                 Console.Clear();
                 SimpleCalculator simpleCalculator = new SimpleCalculator("Простий калькулятор", 1);
-                simpleCalculator.Show();
+                simpleCalculator.Start();
             }
             else if (choiseInput == "2")
             {
                 Console.Clear();
                 AgeCalculator ageCalculator = new AgeCalculator("Калькулятор вiку", 2);
-                ageCalculator.Show();
+                ageCalculator.Start();
             }
             else if (choiseInput == "3")
             {
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв", 3);
-                taxCalculator.Show();
+                taxCalculator.Start();
             }
             else if (choiseInput == Commands.exitIndex)
             {

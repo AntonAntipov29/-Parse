@@ -16,7 +16,7 @@ namespace Calculator_program
             uint yearOfBirthInt;
             string yearOfBirth;
             Console.WriteLine("Будь ласка введiть рiк вашого народження:");
-            UserInput userInput = new UserInput();
+            InputController userInput = new InputController();
             yearOfBirth = userInput.GetUserInput(TypeOfUserInput.year);
 
             yearOfBirthInt = Convert.ToUInt32(yearOfBirth);
