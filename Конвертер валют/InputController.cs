@@ -49,14 +49,13 @@ namespace Calculator_program
         }
 
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
-        {
-            
-            checkedInput = GetUserInput(firstType, false);
+        {           
+            checkedInput = GetUserInput(firstType, true);
             bool isWrongType = string.IsNullOrEmpty(checkedInput);
 
             if (isWrongType)
             {
-                CheckUserInputWithType(secondType, false);
+                CheckUserInputWithType(secondType, true);
             }           
             
             return checkedInput;
@@ -94,7 +93,7 @@ namespace Calculator_program
             }
         }
 
-        private void TypeOfUserInputYear(bool showWarning)
+        private void TypeOfUserInputYear(bool showWarning = true)
         {
             if (int.TryParse(currentInput, out int number))
             {
@@ -194,6 +193,10 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
             }
+            else
+            {
+                GetUserInput(TypeOfUserInput.command);
+            }
         }
         
         private void TypeOfUserInputOperation(bool showWarning = true)
@@ -223,7 +226,7 @@ namespace Calculator_program
                 GetUserInput(TypeOfUserInput.date);
             }
             else
-            {
+            {              
                 GetUserInput(TypeOfUserInput.date);
             }
         }
