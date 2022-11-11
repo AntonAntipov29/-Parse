@@ -14,6 +14,7 @@ namespace Calculator_program
         public string dayOfBirthString;
         private double fullYears;
         private double daysInYear = 365.24;
+        private string userInputString;
 
         AgeCalculatorView ageCalculatorView = new AgeCalculatorView();
 
@@ -35,7 +36,7 @@ namespace Calculator_program
         public override void GettingInput()
         {
             ageCalculatorView.AskFirstInput();           
-            string userInputString = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.date);
+            userInputString = userInput.GetUserInput(TypeOfUserInput.command, TypeOfUserInput.date);
             dayOfBirth = DateTime.Parse(userInputString);         
             ageCalculatorView.Clear();
             dayOfBirthString = dayOfBirth.ToShortDateString();
