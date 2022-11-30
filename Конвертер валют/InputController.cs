@@ -13,6 +13,9 @@ namespace Calculator_program
         public string checkedInput;
         private string currentInput;
 
+        public delegate void TimerIsOver();
+        public event TimerIsOver Message;
+
         NumberFormatInfo formatDot = new NumberFormatInfo()
         {
                 NumberDecimalSeparator = ".",
