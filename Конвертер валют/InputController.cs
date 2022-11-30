@@ -51,14 +51,18 @@ namespace Calculator_program
             return checkedInput;
         }
 
-        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = true)
+        public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = false)
         {           
-            checkedInput = GetUserInput(firstType, true);
+            checkedInput = GetUserInput(firstType, false);
             bool isWrongType = string.IsNullOrEmpty(checkedInput);
 
             if (isWrongType)
             {
-                CheckUserInputWithType(secondType, true);
+                CheckUserInputWithType(secondType, false);
+                if (isWrongType)
+                {
+                    CheckUserInputWithType(firstType, true);
+                }
             }           
             
             return checkedInput;
@@ -102,15 +106,11 @@ namespace Calculator_program
             {
                 checkedInput = currentInput;
             }
-            else if (showWarning)
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.year);
-            }
-            else 
-	        {
-                GetUserInput(TypeOfUserInput.year);
-	        }
+            }          
         }
 
         private void TypeOfUserInputMenuItem(bool showWarning = true)
@@ -119,7 +119,7 @@ namespace Calculator_program
             {
                 checkedInput = currentInput;
             }
-            else if(showWarning)
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.menuItem);
@@ -138,42 +138,26 @@ namespace Calculator_program
             }
             else if (!isNumber && !isLetter && currentInput.Contains("."))
             {
-                Convert.ToDouble(currentInput, formatDot);                
+                Convert.ToDouble(currentInput, formatDot);
                 checkedInput = Convert.ToString(currentInput);
             }
-            else if (showWarning)
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.number);
-            }
-            else
-            {
                 GetUserInput(TypeOfUserInput.number);
             }
         }
 
         private void TypeOfUserInputCurrency(bool showWarning = true)
         {
-            if (int.TryParse(currentInput, out int number) && showWarning)
+            if (currentInput == TaxCalculator.hryvniaIndex || currentInput == TaxCalculator.dollarIndex || currentInput == TaxCalculator.euroIndex)
+            {
+                checkedInput = currentInput;
+            }
+            else if (int.TryParse(currentInput, out int number) && showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.currency);
-            }
-            else if (int.TryParse(currentInput, out int secondNumber) && !showWarning)
-            {
-                GetUserInput(TypeOfUserInput.currency);
-            }
-            else
-            {
-                if (currentInput == TaxCalculator.hryvniaIndex || currentInput == TaxCalculator.dollarIndex || currentInput == TaxCalculator.euroIndex)
-                {
-                    checkedInput = currentInput;
-                }
-                else
-                {
-                    ShowWarning();
-                    GetUserInput(TypeOfUserInput.currency);
-                }
             }
         }
 
@@ -191,28 +175,24 @@ namespace Calculator_program
             {
                 checkedInput = currentInput;
             }
-            else if (showWarning)
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
             }
-            else
-            {
-                GetUserInput(TypeOfUserInput.command);
-            }
         }
-        
+
         private void TypeOfUserInputOperation(bool showWarning = true)
         {
             if (currentInput == SimpleCalculator.additionIndex || currentInput == SimpleCalculator.substractionIndex || currentInput == SimpleCalculator.multiplicationIndex || currentInput == SimpleCalculator.divisionIndex || currentInput == SimpleCalculator.interestIndex)
             {
                 checkedInput = currentInput;
             }
-            else if (showWarning)
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.operation);
-            }
+            }          
         }
 
         private void TypeOfUserInputDate(bool showWarning = true)
@@ -223,13 +203,9 @@ namespace Calculator_program
             {
                 checkedInput = currentInput;
             }          
-            else if (showWarning) 
+            else if (currentInput.Length == 0 || showWarning) 
             {
                 ShowWarning();
-                GetUserInput(TypeOfUserInput.date);
-            }
-            else
-            {              
                 GetUserInput(TypeOfUserInput.date);
             }
         }

@@ -55,7 +55,7 @@ namespace Calculator_program
             };
 
             simpleCalculatorView.AskFirstInput();
-            firstNumber = userInput.GetUserInput(TypeOfUserInput.number);
+            firstNumber = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
 
             if (firstNumber.Contains(","))
             {
@@ -72,10 +72,10 @@ namespace Calculator_program
 
             simpleCalculatorView.Clear();
             simpleCalculatorView.AskActionInput(additionIndex, substractionIndex, multiplicationIndex, divisionIndex, interestIndex);
-            operation = userInput.GetUserInput(TypeOfUserInput.operation);
+            operation = userInput.GetUserInput(TypeOfUserInput.operation, TypeOfUserInput.command);
             simpleCalculatorView.Clear();
             simpleCalculatorView.AskSecondInput();
-            secondNumber = userInput.GetUserInput(TypeOfUserInput.number);
+            secondNumber = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
 
             if (secondNumber.Contains(","))
             {

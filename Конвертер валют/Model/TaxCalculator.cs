@@ -47,7 +47,7 @@ namespace Calculator_program
         public override void GettingInput()
         {
             taxCalculatorView.AskFirstInput();
-            currency = userInput.GetUserInput(TypeOfUserInput.currency);
+            currency = userInput.GetUserInput(TypeOfUserInput.currency, TypeOfUserInput.command);
             taxCalculatorView.CheckFirstInput(currency);
             taxCalculatorView.AskOfContinue();
         }
