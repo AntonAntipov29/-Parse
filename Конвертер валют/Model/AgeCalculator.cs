@@ -36,7 +36,7 @@ namespace Calculator_program
         public override void GettingInput()
         {
             ageCalculatorView.AskFirstInput();           
-            userInputString = userInput.GetUserInput(TypeOfUserInput.date, TypeOfUserInput.command);
+            userInputString = userInput.GetUserInput(TypeOfUserInput.date);
             dayOfBirth = DateTime.Parse(userInputString);         
             ageCalculatorView.Clear();
             dayOfBirthString = dayOfBirth.ToShortDateString();

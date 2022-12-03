@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Calculator_program
 {
@@ -26,7 +21,7 @@ namespace Calculator_program
             base.name = name;
         }
 
-        public string nameOfCalculator { set { name = value; } }
+        public string NameOfCalculator { set { name = value; } }
 
         public new void Start()
         {
@@ -40,7 +35,7 @@ namespace Calculator_program
         public override void GettingInput()
         {
             timerView.AskFirstInput();          
-            secondsInputString = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+            secondsInputString = userInput.GetUserInput(TypeOfUserInput.number);
             secondsInput = Int32.Parse(secondsInputString);
             timerView.Clear();          
             timerView.CheckInput(secondsInput);
@@ -55,7 +50,7 @@ namespace Calculator_program
             {
                 if (time < secondsInput)
                 {
-                    addSecondsInputString = userInput.GetUserInput(TypeOfUserInput.number, TypeOfUserInput.command);
+                    addSecondsInputString = userInput.GetUserInput(TypeOfUserInput.number);
                     secondsInput += Int32.Parse(addSecondsInputString);
                     timerView.SecondsAdding(addSecondsInputString);
                 }         
@@ -63,18 +58,17 @@ namespace Calculator_program
         }
 
         public override void Calculation()
-        {
+        {            
             timerView.TimerIsWorking();
-
+            
             for (time = 0; time < secondsInput; time++)
             {
                 Thread.Sleep(1000);
             }
-
-            Console.Beep();            
+            
+            Console.Beep();
             timerView.Clear();
             timerView.ShowResult(secondsInput);
-
             inputController.Message += timerView.ShowOverMessage;
             timerView.ShowOverMessage();
         }   

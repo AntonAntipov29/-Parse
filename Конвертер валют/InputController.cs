@@ -18,7 +18,7 @@ namespace Calculator_program
 
         NumberFormatInfo formatDot = new NumberFormatInfo()
         {
-                NumberDecimalSeparator = ".",
+            NumberDecimalSeparator = ".",
         };
 
         public string GetUserInput(bool showWarning = true)
@@ -26,22 +26,22 @@ namespace Calculator_program
             currentInput = Console.ReadLine();
 
             if (currentInput.Length == 0 || currentInput.Contains(" ") && showWarning)
-	        {
-                ShowWarning();  
+            {
+                ShowWarning();
                 GetUserInput(showWarning);
-	        }
+            }
             else if (currentInput.Length == 0 || currentInput.Contains(" "))
-	        {
+            {
                 Console.WriteLine("Ви нiчого не ввели!");
                 GetUserInput(showWarning);
-	        }
+            }
             else
             {
                 currentInput = checkedInput;
             }
- 
+
             return checkedInput;
-        } 
+        }
 
         public string GetUserInput(TypeOfUserInput type, bool showWarning = true)
         {
@@ -52,19 +52,15 @@ namespace Calculator_program
         }
 
         public string GetUserInput(TypeOfUserInput firstType, TypeOfUserInput secondType, bool showWarning = false)
-        {           
+        {
             checkedInput = GetUserInput(firstType, false);
             bool isWrongType = string.IsNullOrEmpty(checkedInput);
 
             if (isWrongType)
             {
-                CheckUserInputWithType(secondType, false);
-                if (isWrongType)
-                {
-                    CheckUserInputWithType(firstType, true);
-                }
-            }           
-            
+                CheckUserInputWithType(secondType, true);               
+            }
+
             return checkedInput;
         }
 
@@ -102,6 +98,8 @@ namespace Calculator_program
 
         private void TypeOfUserInputYear(bool showWarning = true)
         {
+            OnExitEntered();
+
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
@@ -110,11 +108,17 @@ namespace Calculator_program
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.year);
-            }          
+            }
+            else
+            {
+                GetUserInput(TypeOfUserInput.year);
+            }
         }
 
         private void TypeOfUserInputMenuItem(bool showWarning = true)
         {
+            OnExitEntered();
+
             if (int.TryParse(currentInput, out int number))
             {
                 checkedInput = currentInput;
@@ -124,12 +128,17 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.menuItem);
             }
+            else
+            {
+                GetUserInput(TypeOfUserInput.menuItem);
+            }
         }
 
         private void TypeOfUserInputNumber(bool showWarning = true)
         {
-            double number;
-            bool isNumber = double.TryParse(currentInput, out number);
+            OnExitEntered();
+
+            bool isNumber = double.TryParse(currentInput, out double number);
             bool isLetter = currentInput.Any(Char.IsLetter);
 
             if (isNumber)
@@ -146,17 +155,27 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.number);
             }
+            else if (currentInput.Length == 0 || showWarning)
+            {
+                GetUserInput(TypeOfUserInput.number);
+            }
         }
 
         private void TypeOfUserInputCurrency(bool showWarning = true)
         {
+            OnExitEntered();
+
             if (currentInput == TaxCalculator.hryvniaIndex || currentInput == TaxCalculator.dollarIndex || currentInput == TaxCalculator.euroIndex)
             {
                 checkedInput = currentInput;
             }
-            else if (int.TryParse(currentInput, out int number) && showWarning)
+            else if (showWarning)
             {
                 ShowWarning();
+                GetUserInput(TypeOfUserInput.currency);
+            }
+            else
+            {
                 GetUserInput(TypeOfUserInput.currency);
             }
         }
@@ -180,10 +199,16 @@ namespace Calculator_program
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.command);
             }
+            else
+            {
+                GetUserInput(TypeOfUserInput.command);
+            }
         }
 
         private void TypeOfUserInputOperation(bool showWarning = true)
         {
+            OnExitEntered();
+
             if (currentInput == SimpleCalculator.additionIndex || currentInput == SimpleCalculator.substractionIndex || currentInput == SimpleCalculator.multiplicationIndex || currentInput == SimpleCalculator.divisionIndex || currentInput == SimpleCalculator.interestIndex)
             {
                 checkedInput = currentInput;
@@ -192,20 +217,30 @@ namespace Calculator_program
             {
                 ShowWarning();
                 GetUserInput(TypeOfUserInput.operation);
-            }          
+            }
+            else
+            {
+                GetUserInput(TypeOfUserInput.operation);
+            }
         }
 
         private void TypeOfUserInputDate(bool showWarning = true)
         {
+            OnExitEntered();
+
             bool isDate = DateTime.TryParse(currentInput, out DateTime result);
 
             if (isDate)
             {
                 checkedInput = currentInput;
-            }          
-            else if (currentInput.Length == 0 || showWarning) 
+            }
+            else if (currentInput.Length == 0 || showWarning)
             {
                 ShowWarning();
+                GetUserInput(TypeOfUserInput.date);
+            }
+            else
+            {
                 GetUserInput(TypeOfUserInput.date);
             }
         }
@@ -217,7 +252,10 @@ namespace Calculator_program
 
         public void OnExitEntered()
         {
-            Environment.Exit(0);
+            if (currentInput == Commands.exitIndex)
+            {
+                Environment.Exit(0);
+            }
         }
 
         public void OnMainMenuEntered()
