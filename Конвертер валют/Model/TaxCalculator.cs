@@ -34,7 +34,7 @@ namespace Calculator_program
             base.name = name;
         }
 
-        public string nameOfCalculator { set { name = value; } }
+        public string NameOfCalculator { set { name = value; } }
 
         public new void Start()
         {
@@ -104,7 +104,7 @@ namespace Calculator_program
             }
 
             yearProfit = result;
-            yearProfit = yearProfit * currencyVariant;
+            yearProfit *= currencyVariant;
             singleTax = yearProfit * singleTaxRate;
             socialCont = MIN_SALARY * socialContRate;
             profit = yearProfit - singleTax - socialCont;

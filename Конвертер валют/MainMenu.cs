@@ -15,6 +15,7 @@ namespace Calculator_program
             Console.WriteLine("1. Простий калькулятор");
             Console.WriteLine("2. Калькулятор вiку");
             Console.WriteLine("3. Калькулятор податкiв");
+            Console.WriteLine("4. Таймер");
 
             InputController userInput = new InputController();
             choiseInput = userInput.GetUserInput(TypeOfUserInput.menuItem, TypeOfUserInput.command);
@@ -36,6 +37,12 @@ namespace Calculator_program
                 Console.Clear();
                 TaxCalculator taxCalculator = new TaxCalculator("Калькулятор податкiв", 3);
                 taxCalculator.Start();
+            }
+            else if (choiseInput == "4")
+            {
+                Console.Clear();
+                TimerApp timer = new TimerApp("Таймер", 4);
+                timer.Start();
             }
             else if (choiseInput == Commands.exitIndex)
             {
